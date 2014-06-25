@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="uniqtag-assign-unique-stable-content-derived-identifiers-to-genes">UniqTag: Assign unique, stable, content-derived identifiers to genes</h1>
+<p>Shaun Jackman, Joerg Bohlmann, İnanç Birol</p>
+<h1 id="abstract">Abstract</h1>
+<h2 id="summary">Summary</h2>
+<p>UniqTag assign unique identifiers to sequences of characters, such as gene sequences, that are derived from the <em>k</em>-mer composition of the gene sequence.</p>
+<h2 id="availability-and-implementation">Availability and implementation</h2>
+<p>The implementation of UniqTag is available at <code>https://github.com/sjackman/uniqtag</code></p>
+<h2 id="contact">Contact</h2>
+<p>Shaun Jackman &lt;sjackman@gmail.com&gt;</p>
+<h1 id="introduction">Introduction</h1>
+<p>Annotating genes, the process of identifying regions of a genome that code for genes, typically follows genome sequence assembly. These genes are assigned unique identifiers by which they can be referenced. Assembly is often an iterative process, refining the method to produce better assemblies, or the addition of the new sequencing data. Ideally these gene identifiers would be reasonably stable from one assembly to the next. Genes are typically assigned serial numbers, which, although certainly unique, are not at all stable between assemblies. One small change in the assembly can result in a totally renumber of the annotated genes.</p>
+<p>One solution is to assign identifiers based on the content of the gene sequence, rather than its position in the assembly. A cryptographic hash function such as SHA (secure hash algorithm) [cite] derives a message digest from the sequence, such that two sequences with the same content will have the same message digest, and any two sequences with different content will have different message digests. When a message digest is used to identify a gene, the same gene in two assemblies with identical content will be assigned identical identifiers, but, by the design of a cryptographic hash function, even a slight change in the sequence, such as a single-character substitution, will result in a totally new digest and identifier.</p>
+<p>A cryptographic hash function is design so that every bit of the message digest has even odds of being flipped after a single bit change of the message, called the avalanche effect [cite]. In contrast, locality-sensitive hashing (LSH) [cite] aims to assign identical message digests to messages with similar content. A hash function that, after a small perturbation of the sequence, assigns the same identifier to the sequence is desirable for identifying the genes of a genome sequence assembly project. One such locality-sensitive hash function, MinHash [cite], is often employed in identifying web pages with similar content. UniqTag is inspired by MinHash to assign stable identifiers to genes.</p>
+<h1 id="algorithm">Algorithm</h1>
+<p>The following symbols are defined.</p>
+<ul>
+<li><em>Σ</em> is an alphabet</li>
+<li><em>s</em> is a string, a sequence of symbols from the alphabet <em>Σ</em></li>
+<li><em>S</em> is a set of strings</li>
+<li><span class="math">\(Σ^k\)</span> is the set of all strings over <em>Σ</em> of length <em>k</em></li>
+<li><span class="math">\(C(s)\)</span> is the set of all substrings of <em>s</em></li>
+<li>A <em>k</em>-mer of <em>s</em> is a substring of <em>s</em> with length <em>k</em>, also called an <em>n</em>-gram</li>
+<li><span class="math">\(C_k(s)\)</span> is the set of all <em>k</em>-mers present in <em>s</em></li>
+<li><span class="math">\(\min S\)</span> is the lexicographically smallest string in <em>S</em></li>
+<li><span class="math">\(f(s, S)\)</span> is the frequency of <em>s</em> in <em>S</em>, defined as the number of strings in <em>S</em> that contain <em>s</em> as a substring</li>
+<li><span class="math">\(\min f_k(s, S)\)</span> is the frequency of the least frequent <em>k</em>-mer in <em>S</em></li>
+<li><span class="math">\(u_k(s, S)\)</span> the lexicographically smallest <em>k</em>-mer of the <em>k</em>-mers of <em>s</em> that are least frequent in <em>S</em></li>
+</ul>
+<p>The UniqTag <span class="math">\(u_k(s, S)\)</span> is defined as follows.</p>
+<p><span class="math">\[
+\begin{eqnarray}
+C_k(s) &amp;=&amp; C(s) ∩ Σ^k
+\\ f(s, S) &amp;=&amp; \left\vert \{ t \mid s ∈ C(t) ∧ t ∈ S \} \right\vert
+\\ \min f_k(s, S) &amp;=&amp; \min \{ f(t, S) \mid t ∈ C_k(s) \}
+\\ u_k(s, S) &amp;=&amp; \min \{ t \mid t ∈ C_k(s) ∧ f(t, S) = \min f_k(s, S) \}
+\end{eqnarray}
+\]</span></p>
+<h1 id="discussion">Discussion</h1>
+<p>When iterating over multiple assemblies of the same data, it is rather inconvenient for gene identifiers to change completely from one assembly to the next. The gene identifier scheme described here attempts to address this common annoyance. By identifying the gene using the lexicographically smallest <em>k</em>-mer in the gene, the gene identifier is reasonably stable across assemblies.</p>
+<p>A UniqueTag will change due to either a difference in the locus of the UniqueTag itself, or a difference that results in the creation of a unique <em>k</em>-mer that is lexicographically smaller than the previous UniqueTag. Concatenating two gene models results in a gene whose UniqueTag is the minimum of the two previous UniqueTags, unless by chance one of the k-mer at the junction of the two sequences is lexicographically smaller.</p>
+<p>A UniqueTag can be generated from the nucleotide sequence of a gene. Using however the translated amino acid sequence of a protein-coding gene sequence results in a UniqueTag that is stable across synonymous changes to the coding sequence, and changes to the untranslated regions of the gene, including UTRs and introns. Additionally, fewer characters are necessary for a <em>k</em>-mer to be unique, resulting in a shorter gene identifier.</p>
+<p>Two gene models that have identical coding sequence have the same UniqueTag. It is possible that two genes with different sequence that have no unique <em>k</em>-mer will be assigned the same UniqueTag. This situation is most common for very short sequences. Genes that are assigned the same UniqueTag are distinguished by adding a numerical suffix to the UniqueTag.</p>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<p>Thanks to Nathaniel Street for his enthusiastic feedback, to the SMarTForests project, its funders and the organizers of the 2014 Conifer Genome Summit that made our conversation possible.</p>
+<h1 id="funding">Funding</h1>
+<p>This work was supported by the Natural Sciences and Engineering Research Council of Canada, Genome British Columbia, Genome Alberta, Genome Québec and Genome Canada.</p>
+<h1 id="references">References</h1>
+<ul>
+<li>Avalanche effect - Feistel, Horst (1973). &quot;Cryptography and Computer Privacy&quot;. Scientific American 228 (5).</li>
+<li>SHA (secure hash algorithm)</li>
+<li>Locality-sensitive hashing</li>
+<li>MinHash</li>
+</ul>
+</body>
+</html>
