@@ -41,13 +41,13 @@
 </ul>
 <p>The UniqTag <span class="math">\(u_k(s, S)\)</span> is defined as follows.</p>
 <p><span class="math">\[
-\begin{eqnarray}
-C_k(s) &amp;=&amp; C(s) ∩ Σ^k
-\\ f(s, S) &amp;=&amp; \left\vert \{ t \mid t ∈ S ∧ s ∈ C(t) \} \right\vert
-\\ f_k(s, S) &amp;=&amp; \min_{ t ∈ C_k(s) } f(t, S)
-\\ F_k(s, S) &amp;=&amp; \{ t \mid t ∈ C_k(s) ∧ f(t, S) = f_k(s, S) \}
-\\ u_k(s, S) &amp;=&amp; \min F_k(s, S)
-\end{eqnarray}
+\begin{aligned}
+C_k(s) &amp;= C(s) ∩ Σ^k
+\\ f(s, S) &amp;= \left\vert \{ t \mid t ∈ S ∧ s ∈ C(t) \} \right\vert
+\\ f_k(s, S) &amp;= \min_{ t ∈ C_k(s) } f(t, S)
+\\ F_k(s, S) &amp;= \{ t \mid t ∈ C_k(s) ∧ f(t, S) = f_k(s, S) \}
+\\ u_k(s, S) &amp;= \min F_k(s, S)
+\end{aligned}
 \]</span></p>
 <h1 id="discussion">Discussion</h1>
 <p>When iterating over multiple assemblies of the same data, it is rather inconvenient for gene identifiers to change completely from one assembly to the next. The gene identifier scheme described here attempts to address this common annoyance. By identifying the gene by its content, using the lexicographically minimal <em>k</em>-mer in the gene, the gene identifier is reasonably stable across assemblies.</p>

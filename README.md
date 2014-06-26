@@ -99,13 +99,13 @@ The following symbols and terms are defined.
 The UniqTag $u_k(s, S)$ is defined as follows.
 
 $$
-\begin{eqnarray}
-C_k(s) &=& C(s) ∩ Σ^k
-\\ f(s, S) &=& \left\vert \{ t \mid t ∈ S ∧ s ∈ C(t) \} \right\vert
-\\ f_k(s, S) &=& \min_{ t ∈ C_k(s) } f(t, S)
-\\ F_k(s, S) &=& \{ t \mid t ∈ C_k(s) ∧ f(t, S) = f_k(s, S) \}
-\\ u_k(s, S) &=& \min F_k(s, S)
-\end{eqnarray}
+\begin{aligned}
+C_k(s) &= C(s) ∩ Σ^k
+\\ f(s, S) &= \left\vert \{ t \mid t ∈ S ∧ s ∈ C(t) \} \right\vert
+\\ f_k(s, S) &= \min_{ t ∈ C_k(s) } f(t, S)
+\\ F_k(s, S) &= \{ t \mid t ∈ C_k(s) ∧ f(t, S) = f_k(s, S) \}
+\\ u_k(s, S) &= \min F_k(s, S)
+\end{aligned}
 $$
 
 Discussion
