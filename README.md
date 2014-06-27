@@ -98,6 +98,25 @@ C_k(s) &= C(s) \cap \Sigma^k
 \end{aligned}
 $$
 
+Results
+=======
+
+UniqTag was used to assign identifiers to the protein sequences of six builds
+of the Ensembl human genome ([Flicek, 2014][]) spanning five years. The overlap
+of UniqTag identifers between older builds and the current build 75 is shown in
+Table 1.
+
+| Build A | Build B | Only in A | In both | Only in B |
+|--------:|--------:|----------:|--------:|----------:|
+|      55 |      75 |     24299 |   30997 |     17600 |
+|      60 |      75 |      9365 |   34859 |     13738 |
+|      65 |      75 |      1088 |   45931 |      2666 |
+|      70 |      75 |       231 |   47955 |       642 |
+|      74 |      75 |         0 |   48597 |         0 |
+
+Table: The overlap of UniqTag identifers between older builds of the Ensembl
+human genome and the current build 75.
+
 Discussion
 ==========
 
@@ -157,7 +176,11 @@ References
 + [Feistel, H. (1973)][Feistel, 1973]
   Cryptography and Computer Privacy.
   *Scientific American*, 228(5).
++ [Flicek, P. (2014)][Flicek, 2014]
+  Ensembl 2014.
+  *Nucleic Acids Research*, 42(D1), D749-D755.
 
 [Broder, 1997]: http://dx.doi.org/10.1109/SEQUEN.1997.666900
 [Dang, 2012]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
 [Feistel, 1973]: http://www.scientificamerican.com/article/cryptography-and-computer-privacy/
+[Flicek, 2014]: http://dx.doi.org/10.1093/nar/gkt1196
