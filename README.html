@@ -46,6 +46,57 @@ C_k(s) &amp;= C(s) \cap \Sigma^k
 \\ u_k(s, S) &amp;= \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
 \end{aligned}
 \]</span></p>
+<h1 id="results">Results</h1>
+<p>UniqTag was used to assign identifiers to the protein sequences of six builds of the Ensembl human genome (<a href="http://dx.doi.org/10.1093/nar/gkt1196">Flicek, 2014</a>) spanning five years. The overlap of UniqTag identifers between older builds and the current build 75 is shown in Table 1.</p>
+<table>
+<caption>The overlap of UniqTag identifers between older builds of the Ensembl human genome and the current build 75.</caption>
+<thead>
+<tr class="header">
+<th align="right">Build A</th>
+<th align="right">Build B</th>
+<th align="right">Only in A</th>
+<th align="right">In both</th>
+<th align="right">Only in B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">55</td>
+<td align="right">75</td>
+<td align="right">24299</td>
+<td align="right">30997</td>
+<td align="right">17600</td>
+</tr>
+<tr class="even">
+<td align="right">60</td>
+<td align="right">75</td>
+<td align="right">9365</td>
+<td align="right">34859</td>
+<td align="right">13738</td>
+</tr>
+<tr class="odd">
+<td align="right">65</td>
+<td align="right">75</td>
+<td align="right">1088</td>
+<td align="right">45931</td>
+<td align="right">2666</td>
+</tr>
+<tr class="even">
+<td align="right">70</td>
+<td align="right">75</td>
+<td align="right">231</td>
+<td align="right">47955</td>
+<td align="right">642</td>
+</tr>
+<tr class="odd">
+<td align="right">74</td>
+<td align="right">75</td>
+<td align="right">0</td>
+<td align="right">48597</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 <h1 id="discussion">Discussion</h1>
 <p>When iterating over multiple assemblies of the same data, it is rather inconvenient when gene identifiers to change from one assembly to the next. UniqTag attempts to address this common annoyance. By identifying the gene by a feature of its content rather than an arbitrary serial number, the gene identifier is reasonably stable between assemblies.</p>
 <p>A UniqTag will change due to a difference in the locus of the UniqTag itself, the creation of a least-frequent <em>k</em>-mer that is lexicographically smaller than the previous UniqTag, or the creation of a <em>k</em>-mer elsewhere resulting in the UniqTag no longer being a least-frequent <em>k</em>-mer. Concatenating two gene models results in a gene whose UniqTag is the minimum of the two previous UniqTags, unless one of the k-mer at the junction of the two sequences is lexicographically smaller. Similarly, splitting a gene model in two results in one gene that retains the previous UniqTag and a second gene that is assigned a new UniqTag, unless the previous UniqTag spanned the junction.</p>
@@ -60,6 +111,7 @@ C_k(s) &amp;= C(s) \cap \Sigma^k
 <li><a href="http://dx.doi.org/10.1109/SEQUEN.1997.666900">Broder, A. Z. (1997)</a> On the resemblance and containment of documents. <em>Compression and Complexity of Sequences</em>, 1997 Proceedings, 21-29.</li>
 <li><a href="http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977">Dang, Q. H. (2012)</a> Secure Hash Standard (SHS). <em>NIST FIPS</em>, 180(4), 1-35.</li>
 <li><a href="http://www.scientificamerican.com/article/cryptography-and-computer-privacy/">Feistel, H. (1973)</a> Cryptography and Computer Privacy. <em>Scientific American</em>, 228(5).</li>
+<li><a href="http://dx.doi.org/10.1093/nar/gkt1196">Flicek, P. (2014)</a> Ensembl 2014. <em>Nucleic Acids Research</em>, 42, D749-D755.</li>
 </ul>
 </body>
 </html>
