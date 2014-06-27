@@ -93,7 +93,7 @@ The UniqTag $u_k(s, S)$ is defined as follows.
 $$
 \begin{aligned}
 C_k(s) &= C(s) \cap \Sigma^k
-\\ f(s, S) &= \left\vert \{ s \in C(t) \wedge t \mid t \in S \} \right\vert
+\\ f(s, S) &= \left\vert \{ t \mid s \in C(t) \wedge t \in S \} \right\vert
 \\ u_k(s, S) &= \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
 \end{aligned}
 $$
