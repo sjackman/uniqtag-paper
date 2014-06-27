@@ -72,10 +72,10 @@ Algorithm
 
 The following symbols and terms are defined.
 
-+ *Σ* is an alphabet
-+ *s* and *t* are strings, a sequence of symbols over *Σ*
-+ *S* is a set of strings over *Σ*
-+ $Σ^k$ is the set of all strings over *Σ* of length *k*
++ $\Sigma$ is an alphabet
++ *s* and *t* are strings, a sequence of symbols over $\Sigma$
++ *S* is a set of strings over $\Sigma$
++ $\Sigma^k$ is the set of all strings over $\Sigma$ of length *k*
 + $\min S$ is the lexicographically minimal string of *S*
 + $C(s)$ is the set of all substrings of *s*
 + A *k*-mer of *s* is a substring of *s* with length *k*, also called an
@@ -83,7 +83,7 @@ The following symbols and terms are defined.
 + $C_k(s)$ is the set of all *k*-mers present in *s*
 + $f(s, S)$ is the frequency of *s* in *S*, defined as the number of strings in
   *S* that contain *s* as a substring
-+ $\mathop{\arg\,\min}\limits_{t ∈ C_k(s)} f(t, S)$ is the set of the *k*-mers
++ $\mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)$ is the set of the *k*-mers
   of *s* that are least frequent in *S*
 + $u_k(s, S)$ is the UniqTag, the lexicographically minimal *k*-mer of the
   *k*-mers of *s* that are least frequent in *S*
@@ -92,9 +92,9 @@ The UniqTag $u_k(s, S)$ is defined as follows.
 
 $$
 \begin{aligned}
-C_k(s) &= C(s) ∩ Σ^k
-\\ f(s, S) &= \left\vert \{ s ∈ C(t) ∧ t \mid t ∈ S \} \right\vert
-\\ u_k(s, S) &= \min \mathop{\arg\,\min}\limits_{t ∈ C_k(s)} f(t, S)
+C_k(s) &= C(s) \cap \Sigma^k
+\\ f(s, S) &= \left\vert \{ s \in C(t) \wedge t \mid t \in S \} \right\vert
+\\ u_k(s, S) &= \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
 \end{aligned}
 $$
 
