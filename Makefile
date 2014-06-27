@@ -12,3 +12,12 @@ clean:
 
 %.pdf: %.md
 	pandoc -o $@ $<
+
+%.pdf: %.tex bioinfo/bioinfo.cls
+	TEXINPUTS=.:bioinfo: pdflatex $<
+
+bioinfo01.zip:
+	wget http://www.oxfordjournals.org/our_journals/bioinformatics/for_authors/bioinfo01.zip
+
+bioinfo/bioinfo.cls: bioinfo01.zip
+	unzip -d bioinfo $<
