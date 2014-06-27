@@ -11,4 +11,4 @@ clean:
 	pandoc -s --mathjax -o $@ $<
 
 %.pdf: %.md
-	pandoc --latex-engine=xelatex -o $@ $<
+	pandoc -o $@ $<
