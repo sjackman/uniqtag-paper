@@ -1,13 +1,10 @@
-UniqTag: Assign unique, reasonably stable, content-derived identifiers to genes
-===============================================================================
-
-Shaun Jackman, Joerg Bohlmann, İnanç Birol
-
-Abstract
-========
+---
+title: 'UniqTag: Assign unique, reasonably stable, content-derived identifiers to genes'
+author: 'Shaun Jackman, Joerg Bohlmann, İnanç Birol'
+---
 
 Summary
--------
+=======
 
 UniqTag assigns unique identifiers to gene sequences, or other arbitrary
 sequences of characters, that are derived from the *k*-mer composition of the
@@ -15,16 +12,16 @@ sequence. Unlike serial or accession numbers, these identifiers are reasonably
 stable between different assemblies and annotations of the same data.
 
 Availability and implementation
--------------------------------
+===============================
 
-The implementation of UniqTag is available at
+The implementation of UniqTag is available at  
 `https://github.com/sjackman/uniqtag`
 
-Supplementary data and the code used to generate it is available at
+Supplementary data and code to reproduce it is available at  
 `https://github.com/sjackman/uniqtag-paper`
 
 Contact
--------
+=======
 
 Shaun Jackman &lt;sjackman@bcgsc.ca&gt;
 
@@ -88,6 +85,7 @@ The following symbols and terms are defined.
 + $u_k(s, S)$ is the UniqTag, the lexicographically minimal *k*-mer of the
   *k*-mers of *s* that are least frequent in *S*
 
+\clearpage
 The UniqTag $u_k(s, S)$ is defined as follows.
 
 $$
@@ -150,35 +148,32 @@ composition and no unique *k*-mer are assigned the same UniqTag. Genes that are
 assigned the same UniqTag are distinguished by adding a numerical suffix to the
 UniqTag.
 
-Acknowledgements
+Acknowledgements {-}
 ================
 
 Thanks to Nathaniel Street for his enthusiastic feedback, to the SMarTForests
 project, its funders and the organizers of the 2014 Conifer Genome Summit that
 made our conversation possible.
 
-Funding
-=======
-
-This work was supported by the Natural Sciences and Engineering Research Council
+*Funding*: This work was supported by the Natural Sciences and Engineering Research Council
 of Canada, Genome British Columbia, Genome Alberta, Genome Québec and Genome
 Canada.
 
-References
+References {-}
 ==========
 
-+ [Broder, A. Z. (1997)][Broder, 1997]
-  On the resemblance and containment of documents.
-  *Compression and Complexity of Sequences*, 1997 Proceedings, 21-29.
-+ [Dang, Q. H. (2012)][Dang, 2012]
-  Secure Hash Standard (SHS).
-  *NIST FIPS*, 180(4), 1-35.
-+ [Feistel, H. (1973)][Feistel, 1973]
-  Cryptography and Computer Privacy.
-  *Scientific American*, 228(5).
-+ [Flicek, P. (2014)][Flicek, 2014]
-  Ensembl 2014.
-  *Nucleic Acids Research*, 42(D1), D749-D755.
+[Broder, A. Z. (1997)][Broder, 1997]
+On the resemblance and containment of documents.
+*Compression and Complexity of Sequences*, 1997 Proceedings, 21-29.  
+[Dang, Q. H. (2012)][Dang, 2012]
+Secure Hash Standard (SHS).
+*NIST FIPS*, 180(4), 1-35.  
+[Feistel, H. (1973)][Feistel, 1973]
+Cryptography and Computer Privacy.
+*Scientific American*, 228(5).  
+[Flicek, P. (2014)][Flicek, 2014]
+Ensembl 2014.
+*Nucleic Acids Research*, 42(D1), D749-D755.
 
 [Broder, 1997]: http://dx.doi.org/10.1109/SEQUEN.1997.666900
 [Dang, 2012]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
