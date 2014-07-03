@@ -99,10 +99,10 @@ $$
 Results
 =======
 
-UniqTag was used to assign identifiers to the protein sequences of six builds
-of the Ensembl human genome ([Flicek, 2014][]) spanning five years. The overlap
-of UniqTag identifers between older builds and the current build 75 is shown in
-Table 1.
+UniqTag was used to assign seven-character identifiers to the protein sequences
+of six builds of the Ensembl human genome ([Flicek, 2014][]) spanning five
+years. The overlap of UniqTag identifers between older builds and the current
+build 75 is shown in Table 1.
 
 | Build A | Build B | Only in A | In both | Only in B |
 |--------:|--------:|----------:|--------:|----------:|
