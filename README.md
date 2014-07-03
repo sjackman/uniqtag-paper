@@ -31,11 +31,11 @@ Introduction
 The task of annotating the genes of a genome sequence often follows genome
 sequence assembly. These annotated genes are assigned unique identifiers by
 which they can be referenced. Assembly and annotation is often an iterative
-process, by refining the method or by the addition of the more sequencing data.
+process, by refining the method or by the addition of more sequencing data.
 These gene identifiers would ideally be reasonably stable from one assembly to
 the next. Genes are typically assigned serial or accession numbers, which,
-although certainly unique, are not stable between assemblies. A single change in
-the assembly can result in a total renumbering of the annotated genes.
+although certainly unique, are not stable between assemblies. A single change
+in the assembly can result in a total renumbering of the annotated genes.
 
 One solution to stabilize identifiers is to assign them based on the content of
 the gene sequence. A cryptographic hash function such as SHA (Secure Hash
@@ -45,7 +45,7 @@ two sequences that differ will have different message digests. If a
 cryptographic hash were used to identify a gene, the same gene in two assemblies
 with identical content would be assigned identical identifiers, but by design a
 slight change in the sequence, such as a single-character substitution, would
-result in a completely different digest and identifier.
+result in a completely different digest and unique identifier.
 
 A cryptographic hash function is designed so that small changes in the message,
 even a single bit change, results in large changes to the message digest:
@@ -119,7 +119,7 @@ Discussion
 ==========
 
 When iterating over multiple assemblies of the same data, it is rather
-inconvenient when gene identifiers to change from one assembly to the next.
+inconvenient when gene identifiers change from one assembly to the next.
 UniqTag attempts to address this common annoyance. By identifying the gene by a
 feature of its content rather than an arbitrary serial number, the gene
 identifier is reasonably stable between assemblies.
