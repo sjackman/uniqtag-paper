@@ -10,17 +10,25 @@
 
 \copyrightyear{2014}
 \pubyear{2014}
+\application % applications note
 
 \begin{document}
 \firstpage{1}
 
-\title{UniqTag: Assign unique, reasonably stable, content-derived
-identifiers to genes}
-\author{Shaun Jackman$^{1,2,*}$, Joerg Bohlmann$^2$ and \.{I}nan\c{c} Birol$^{1,2}$
-\footnote{to whom correspondence should be addressed}}
+\title[UniqTag]{
+UniqTag: Assign unique, reasonably stable, content-derived identifiers to genes}
+\author[Jackman \textit{et al.}]{
+Shaun Jackman$^{1,2,*}$, Joerg Bohlmann$^{3,4}$ and \.{I}nan\c{c} Birol$^{1,5}$
+\footnote{to whom correspondence should be addressed}
+}
 
-\address{$^{1}$BC Cancer Agency Genome Sciences Centre
-\\ $^{2}$University of British Columbia}
+\address{
+$^1$Genome Sciences Centre, British Columbia Cancer Agency, Vancouver, BC V5Z 4S6, Canada
+\\$^2$Department of Bioinformatics, University of British Columbia, Vancouver, BC V5Z 4S6, Canada
+\\$^3$Michael Smith Laboratories, University of British Columbia, Vancouver, BC V6T 1Z4, Canada
+\\$^4$Department of Forest Sciences, University of British Columbia, Vancouver, BC V6T 1Z4, Canada
+\\$^5$Department of Medical Genetics, University of British Columbia, Vancouver, BC V6H 3N1, Canada
+}
 
 \history{Received on XXXXX; revised on XXXXX; accepted on XXXXX}
 
@@ -56,11 +64,11 @@ The task of annotating the genes of a genome sequence often follows
 genome sequence assembly. These annotated genes are assigned unique
 identifiers by which they can be referenced. Assembly and annotation is
 often an iterative process, by refining the method or by the addition of
-the more sequencing data. These gene identifiers would ideally be
-reasonably stable from one assembly to the next. Genes are typically
-assigned serial or accession numbers, which, although certainly unique,
-are not stable between assemblies. A single change in the assembly can
-result in a total renumbering of the annotated genes.
+more sequencing data. These gene identifiers would ideally be reasonably
+stable from one assembly to the next. Genes are typically assigned
+serial or accession numbers, which, although certainly unique, are not
+stable between assemblies. A single change in the assembly can result in
+a total renumbering of the annotated genes.
 
 One solution to stabilize identifiers is to assign them based on the
 content of the gene sequence. A cryptographic hash function such as SHA
@@ -73,7 +81,7 @@ cryptographic hash were used to identify a gene, the same gene in two
 assemblies with identical content would be assigned identical
 identifiers, but by design a slight change in the sequence, such as a
 single-character substitution, would result in a completely different
-digest and identifier.
+digest and unique identifier.
 
 A cryptographic hash function is designed so that small changes in the
 message, even a single bit change, results in large changes to the
@@ -142,8 +150,8 @@ C_k(s) &= C(s) \cap \Sigma^k
 
 \section{Results}\label{results}
 
-UniqTag was used to assign identifiers to the protein sequences of six
-builds of the Ensembl human genome
+UniqTag was used to assign seven-character identifiers to the protein
+sequences of six builds of the Ensembl human genome
 (\href{http://dx.doi.org/10.1093/nar/gkt1196}{Flicek, 2014}) spanning
 five years. The overlap of UniqTag identifers between older builds and
 the current build 75 is shown in Table 1.
@@ -172,10 +180,10 @@ Ensembl human genome and the current build 75.}
 \section{Discussion}\label{discussion}
 
 When iterating over multiple assemblies of the same data, it is rather
-inconvenient when gene identifiers to change from one assembly to the
-next. UniqTag attempts to address this common annoyance. By identifying
-the gene by a feature of its content rather than an arbitrary serial
-number, the gene identifier is reasonably stable between assemblies.
+inconvenient when gene identifiers change from one assembly to the next.
+UniqTag attempts to address this common annoyance. By identifying the
+gene by a feature of its content rather than an arbitrary serial number,
+the gene identifier is reasonably stable between assemblies.
 
 A UniqTag will change due to a difference in the locus of the UniqTag
 itself, the creation of a least-frequent \emph{k}-mer that is
