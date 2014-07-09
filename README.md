@@ -130,7 +130,7 @@ Discussion
 
 When iterating over multiple assemblies of the same data, it is rather
 inconvenient when gene identifiers change from one assembly to the next.
-UniqTag attempts to address this common annoyance. By identifying the gene by a
+UniqTag attempts to address this common challenge. By identifying the gene by a
 feature of its content rather than an arbitrary serial number, the gene
 identifier is stable between assemblies.
 
@@ -140,23 +140,22 @@ the previous UniqTag, or the creation of a *k*-mer elsewhere resulting in the
 UniqTag no longer being a least-frequent *k*-mer. Concatenating two gene models
 results in a gene whose UniqTag is the minimum of the two previous UniqTags,
 unless one of the k-mer at the junction of the two sequences is
-lexicographically smaller. Similarly, splitting a gene model in two results in
-one gene that retains the previous UniqTag and a second gene that is assigned a
-new UniqTag, unless the previous UniqTag spanned the junction.
+lexicographically smaller. Similarly when a gene model is split in two, one
+gene is assigned a new UniqTag and the other retains the previous UniqTag,
+unless the previous UniqTag spanned the junction.
 
 A UniqTag can be generated from the nucleotide sequence of a gene. Using
 instead the translated amino acid sequence of a protein-coding gene sequence
 results in a UniqTag that is stable across synonymous changes to the coding
-sequence as well as to changes in the untranslated regions (UTR) and introns of
-the gene. Since the amino acid alphabet is larger than the nucleotide alphabet,
+sequence as well as to changes in the untranslated regions and introns of the
+gene. Since the amino acid alphabet is larger than the nucleotide alphabet,
 fewer characters are required for a *k*-mer to be likely unique, resulting in
 an aesthetically pleasing shorter identifier.
 
-Two gene models with identical sequence will have the same UniqTag. It is
-possible although uncommon that two non-identical genes with similar *k*-mer
-composition and no unique *k*-mer are assigned the same UniqTag. Genes that are
-assigned the same UniqTag are distinguished by adding a numerical suffix to the
-UniqTag.
+Two gene models with identical sequence would be assigned the same UniqTag. It
+is possible that two genes that have no unique *k*-mer and similar *k*-mer
+composition are assigned the same UniqTag. Genes that have the same UniqTag are
+distinguished by adding a numerical suffix to the UniqTag.
 
 Acknowledgements {-}
 ================
