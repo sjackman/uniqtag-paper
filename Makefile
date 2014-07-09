@@ -17,10 +17,10 @@ uniqtag-body-orig.tex: README.md
 	pandoc -o $@ $<
 
 %-body.tex: %-body-orig.tex
-	sed 's/\\section{Introduction}/\\end{abstract}&/; \
-		s/\\begin{longtable}/\\begin{table}[!h]\\centering\\begin{tabular}/; \
-		s/\\end{longtable}/\\end{tabular}\\end{table}/; \
-		s/\\endhead//' $< >$@
+	sed -e 's/\\section{Introduction}/\\end{abstract}&/' \
+		-e 's/\\begin{longtable}/\\begin{table}[!h]\\centering\\begin{tabular}/' \
+		-e 's/\\end{longtable}/\\end{tabular}\\end{table}/' \
+		-e 's/\\endhead//' $< >$@
 
 %.tex: %-header.tex %-body.tex %-footer.tex
 	cat $^ >$@
