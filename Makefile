@@ -7,6 +7,12 @@ clean:
 .DELETE_ON_ERROR:
 .SECONDARY:
 
+# Dependencies
+
+uniqtag-body.tex: bioinfo/bioinfo.cls ensembl.png
+
+# Rules
+
 %.html: %.md
 	pandoc -s --mathjax -o $@ $<
 
@@ -24,8 +30,6 @@ uniqtag-body-orig.tex: README.md
 
 %.tex: %-header.tex %-body.tex %-footer.tex
 	cat $^ >$@
-
-uniqtag-body.tex: bioinfo/bioinfo.cls
 
 %.pdf: %.tex
 	TEXINPUTS=.:bioinfo: pdflatex $<
