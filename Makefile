@@ -18,7 +18,7 @@ uniqtag-body-orig.tex: README.md
 
 %-body.tex: %-body-orig.tex
 	sed -e 's/\\section{Introduction}/\\end{abstract}&/' \
-		-e 's/\\begin{longtable}/\\begin{table}[!h]\\centering\\begin{tabular}/' \
+		-e 's/\\begin{longtable}/\\begin{table}[!b]\\centering\\begin{tabular}/' \
 		-e 's/\\end{longtable}/\\end{tabular}\\end{table}/' \
 		-e 's/\\endhead//' $< >$@
 
