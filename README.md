@@ -141,10 +141,11 @@ of six builds of the Ensembl human genome ([Flicek, 2014][]) spanning five
 years. A seven-character string from the alphabet of the standard 20 amino
 acids allows for over a billion distinct identifiers. The Ensembl human genome
 is used for its archive of historical annotations. The overlap of UniqTag
-identifers between older builds and the current build 75 is shown in Table 1.
-Comparing two recent builds 70 (Jan 2013) and 75 (Feb 2014), fewer than 1% of
-the UniqTags changed, and when comparing a much older build 55 (Jul 2009) and
-the current build 75, still over half the UniqTags are unchanged.
+identifers between older builds and the current build 75 is shown in
+Table&nbsp;1. Comparing two recent builds 70 (Jan 2013) and 75 (Feb 2014),
+fewer than 1% of the UniqTags changed, and when comparing a much older build 55
+(Jul 2009) and the current build 75, still over half the UniqTags are
+unchanged.
 
 | Build A | Build B | Only in A | In both | Only in B |
 |--------:|--------:|----------:|--------:|----------:|
