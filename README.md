@@ -103,31 +103,35 @@ distinguished by adding a numerical suffix to the UniqTag.
 Algorithm
 ---------
 
-The UniqTag $u_k(s, S)$, a substring of the string *s* with length *k* from the
-set of strings *S*, is defined as follows.
-
-$\Sigma$ is an alphabet.
-$\Sigma^k$ is the set of all strings over $\Sigma$ of length *k*. *s* and *t*
-are strings over $\Sigma$.
-$C(s)$ is the set of all substrings of *s*. A *k*-mer of *s* is a substring of
-*s* with length *k*.
-$C_k(s)$ is the set of all *k*-mers of *s*.
+The UniqTag $u_k(s, S)$, a substring with length *k* of the string *s* from the
+set of strings *S*, is defined as follows. Let $\Sigma$ be an alphabet, such as
+the twenty standard amino acids or the four nucleotides. Let $\Sigma^k$ be the
+set of all strings over $\Sigma$ of length *k*, that is, all *k*-mers from the
+alphabet $\Sigma$. Let *s* and *t* be strings over $\Sigma$, such as the
+peptide or nucleotide sequence of a gene. Let $C(s)$ be the set of all
+substrings of *s*, and $C_k(s)$ be the set of all *k*-mers of *s*, that is, all
+substrings of *s* with length *k*.
 
 $$
 C_k(s) = C(s) \cap \Sigma^k
 $$
 
-*S* is a set of strings over $\Sigma$.
-$f(s, S)$ is the frequency of *s* in *S*, defined as the number of strings in
-*S* that contain *s* as a substring.
+Let *S* be a set of strings over $\Sigma$, such as the peptide or nucleotide
+sequences of the annotated genes of a genome assembly. Let $f(s, S)$ be the
+frequency of *s* in *S*, defined as the number of strings in *S* that contain
+*s* as a substring, for example, the number of genes that contain the *k*-mer
+$s$.
 
 $$
 f(s, S) = \left\vert \{ t \mid s \in C(t) \wedge t \in S \} \right\vert
 $$
 
-$\min S$ is the lexicographically minimal string of *S*.
+Let $\min S$ be the lexicographically minimal string of *S*. If the strings of
+*S* were sorted alphabetically, it would be the first in the list. Finally,
 $u_k(s, S)$ is the UniqTag, the lexicographically minimal *k*-mer of those
-*k*-mers of *s* that are least frequent in *S*.
+*k*-mers of *s* that are least frequent in *S*. Typically, for a given gene it
+is the first *k*-mer in an alphabetically sorted list of the *k*-mers that are
+unique to that gene.
 
 $$
 u_k(s, S) = \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
