@@ -100,7 +100,7 @@ is possible that two genes that have no unique *k*-mer and similar *k*-mer
 composition are assigned the same UniqTag. Genes that have the same UniqTag are
 distinguished by adding a numerical suffix to the UniqTag.
 
-Algorithm
+Algorithm {-}
 ---------
 
 The UniqTag $u_k(s, S)$, a substring with length *k* of the string *s* from the
