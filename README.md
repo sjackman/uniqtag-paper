@@ -140,7 +140,7 @@ $$
 Results
 =======
 
-UniqTag was used to assign nine-peptide identifiers to the first peptide
+UniqTag was used to assign identifiers of nine peptides to the first protein
 sequence, that with the smallest ENSP number, of each gene of the Ensembl human
 genome. This analysis was repeated for nine builds of the Ensembl human genome
 ([Flicek, 2014][]) spanning seven years and two major genome assemblies, NCBI36
@@ -148,7 +148,7 @@ up to build 54 and GRCh37 afterward. The number of common UniqTag identifers
 between older builds, from build 40 to build 74, and the current build 75 is
 shown in Figure&nbsp;1. Also shown is the number of common gene and protein
 identifiers (ENSG and ENSP accession numbers) and the number of identical
-peptides sequences between builds. Although less stable than the gene ID, the
+peptide sequences between builds. Although less stable than the gene ID, the
 UniqTag is more stable than the protein ID and the peptide sequence. Whereas
 the gene and protein identifiers can, with effort, be lifted over from older
 builds to the newest build, the UniqTag identifier can be generated without any
