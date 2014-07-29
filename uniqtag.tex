@@ -176,38 +176,36 @@ u_k(s, S) = \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
 
 \section{Results}\label{results}
 
-UniqTag was used to assign seven-character identifiers to the protein
-sequences of six builds of the Ensembl human genome
+UniqTag was used to assign nine-peptide identifiers to the first peptide
+sequence, that with the smallest ENSP number, of each gene of the
+Ensembl human genome. This analysis was repeated for nine builds of the
+Ensembl human genome
 (\href{http://dx.doi.org/10.1093/nar/gkt1196}{Flicek, 2014}) spanning
-five years. A seven-character string from the alphabet of the standard
-20 amino acids allows for over a billion distinct identifiers. The
-Ensembl human genome is used for its archive of historical annotations.
-The overlap of UniqTag identifers between older builds and the current
-build 75 is shown in Table~1. Comparing two recent builds 70 (Jan 2013)
-and 75 (Feb 2014), fewer than 1\% of the UniqTags changed, and when
-comparing a much older build 55 (Jul 2009) and the current build 75,
-still over half the UniqTags are unchanged.
+seven years and two major genome assemblies, NCBI36 up to build 54 and
+GRCh37 afterward. The number of common UniqTag identifers between older
+builds, from build 40 to build 74, and the current build 75 is shown in
+Figure~1. Also shown is the number of common gene and protein
+identifiers (ENSG and ENSP accession numbers) and the number of
+identical peptides sequences between builds. Although less stable than
+the gene ID, the UniqTag is more stable than the protein ID and the
+peptide sequence. Whereas the gene and protein identifiers can, with
+effort, be lifted over from older builds to the newest build, the
+UniqTag identifier can be generated without any knowledge of previous
+assemblies, making it a much simpler operation. The number of identical
+peptide sequences between builds shows the performance that would be
+expected of using a message digest, such as SHA-1, of the peptide
+sequence as the identifier. Supplementary figure~S1 shows that the
+UniqTag identifiers are quite stable for values of \emph{k}, the size of
+the UniqTag identifier, between 8 and 50 peptides.
 
-\begin{table}[!b]\centering\begin{tabular}[c]{@{}rrrrr@{}}
-\toprule\addlinespace
-Build A & Build B & Only in A & In both & Only in B
-\\\addlinespace
-\midrule
-55 & 75 & 24299 & 30997 & 17600
-\\\addlinespace
-60 & 75 & 9365 & 34859 & 13738
-\\\addlinespace
-65 & 75 & 1088 & 45931 & 2666
-\\\addlinespace
-70 & 75 & 231 & 47955 & 642
-\\\addlinespace
-74 & 75 & 0 & 48597 & 0
-\\\addlinespace
-\bottomrule
-\addlinespace
-\caption{The overlap of UniqTag identifers between older builds of the
-Ensembl human genome and the current build 75.}
-\end{tabular}\end{table}
+\begin{figure}[htbp]
+\centering
+\includegraphics{ensembl.png}
+\caption{The number of common UniqTag identifers between older builds of
+the Ensembl human genome and the current build 75, the number of common
+gene and protein identifiers, and the number of identical peptide
+sequences between builds.}
+\end{figure}
 
 \section*{Acknowledgements}\label{acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
