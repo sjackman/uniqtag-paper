@@ -72,14 +72,14 @@ Inanc Birol \textless{}ibirol@bcgsc.ca\textgreater{}
 
 The task of annotating the genes of a genome sequence often follows
 genome assembly. These annotated genes are assigned unique identifiers
-by which they can be referenced. Assembly and annotation is often an
-iterative process, by refining the method or by the addition of more
+by which they can be referenced. Assembly and annotation is frequently
+an iterative process, by refining the method or by the addition of more
 sequencing data. These gene identifiers would ideally be stable from one
-assembly and annotation to the next. Serial numbers are used for
-identifiers of genes annotated by software such as MAKER
-(\href{http://dx.doi.org/10.1104/pp.113.230144}{Campbell, 2014}), which,
-although certainly unique, are not stable between assemblies. A single
-change in the assembly can result in a total renumbering of the
+assembly and annotation to the next. The common practice is to use
+serial numbers to identify genes that are annotated by software such as
+MAKER (\href{http://dx.doi.org/10.1104/pp.113.230144}{Campbell, 2014}),
+which, although certainly unique, are not stable between assemblies. A
+single change in the assembly can result in a total renumbering of the
 annotated genes.
 
 One solution to stabilize identifiers is to assign them based on the
@@ -95,20 +95,20 @@ identifiers. Yet, by design a slight change in the sequence, such as a
 single-character substitution, would result in a completely different
 digest.
 
-Locality-sensitive hashing, in contrast to a cryptographic hash
-function, aims to assign items that are similar to the same hash bucket.
-A hash function that, after a small perturbation of the sequence,
-assigns an identical identifier to the sequence is desirable for
-labelling the genes of a genome annotation project. One such
-locality-sensitive hash function, MinHash, was employed to identify web
-pages with similar content
+Locality-sensitive hashing in contrast aims to assign items that are
+similar to the same hash value. A hash function that assigns an
+identical identifier to a sequence after a modification of that sequence
+is desirable for labelling the genes of an ongoing genome annotation
+project. One such locality-sensitive hash function, MinHash, was
+employed to identify web pages with similar content
 (\href{http://dx.doi.org/10.1109/SEQUEN.1997.666900}{Broder, 1997}) by
-selecting a small representative set of words from the web page.
-UniqTag, inspired by MinHash, selects a single representative
-\emph{k}-mer from the sequence to assign a stable identifier to a gene.
+selecting a small representative set of words from a web page.
+
+UniqTag is inspired by MinHash. It selects a single representative
+\emph{k}-mer from a sequence to assign a stable identifier to a gene.
 These identifiers are intended for systematic labelling of genes rather
-than assigning a biological name, which is typically based on biological
-function or homology to orthologous genes.
+than assigning biological gene names, as the latter are typically based
+on biological function or homology to orthologous genes.
 
 \section{Description}\label{description}
 
@@ -127,11 +127,12 @@ that have no unique \emph{k}-mer and similar \emph{k}-mer composition
 are assigned the same UniqTag. In such cases, genes that have the same
 UniqTag are distinguished by adding a numerical suffix to the UniqTag.
 
-The UniqTag is designed to be stable but will change when the locus of
-the UniqTag itself changes, or when a least-frequent \emph{k}-mer that
-is lexicographically smaller than the previous UniqTag is created, or
-when a duplicate \emph{k}-mer is created elsewhere that results in the
-previous UniqTag no longer being a least-frequent \emph{k}-mer.
+The UniqTag is designed to be stable but will change in the following
+conditions: when the sequence at the locus of the UniqTag changes; when
+a least-frequent \emph{k}-mer that is lexicographically smaller than the
+previous UniqTag is created; when a duplicate \emph{k}-mer is created
+elsewhere that results in the previous UniqTag no longer being a
+least-frequent \emph{k}-mer.
 
 Concatenating two gene models results in a gene whose UniqTag is the
 minimum of the two previous UniqTags, unless the new UniqTag spans the
@@ -142,45 +143,43 @@ Importantly, unlike naming the genes after the genomic contigs or
 scaffolds in which they are found, changing the order of the genes in a
 genome assembly has no effect on the UniqTag.
 
-\subsection*{Algorithm}\label{algorithm}
-\addcontentsline{toc}{subsection}{Algorithm}
-
-Here we define the UniqTag mathematically. Let $\Sigma$ be an alphabet,
-such as the twenty standard amino acids or the four nucleotides. Let
-$\Sigma^k$ be the set of all strings over $\Sigma$ of length \emph{k}.
-Let \emph{s} be a string over $\Sigma$, such as the peptide or
-nucleotide sequence of a gene. Let $C(s)$ be the set of all substrings
-of \emph{s}, and $C_k(s)$ be the set of all \emph{k}-mers of \emph{s},
-that is, all substrings of \emph{s} with length \emph{k}.
+The UniqTag is defined mathematically as follows. Let $\Sigma$ be an
+alphabet, such as the twenty standard amino acids or the four
+nucleotides. Let $\Sigma^k$ be the set of all strings over $\Sigma$ of
+length \emph{k}. Let \emph{s} be a string over $\Sigma$, such as the
+peptide or nucleotide sequence of a gene. Let $C(s)$ be the set of all
+substrings of \emph{s}, and $C_k(s)$ be the set of all \emph{k}-mers of
+\emph{s}, that is, all substrings of \emph{s} with length \emph{k}.
 
 \[
 C_k(s) = C(s) \cap \Sigma^k
 \]
 
-Let \emph{S} be a set of strings over $\Sigma$, such as the peptide or
-nucleotide sequences of the annotated genes of a genome assembly. Let
-$f(t, S)$ be the frequency in \emph{S} of a \emph{k}-mer \emph{t},
-defined as the number of strings, or genes, in \emph{S} that contain the
+Let \emph{S} be a set of \emph{n} strings $\{s_0, \dots, s_n\}$, such as
+the peptide or nucleotide sequences of the annotated genes of a genome
+assembly. Let $f(t, S)$ be the frequency in \emph{S} of a \emph{k}-mer
+\emph{t}, defined as the number of strings in \emph{S} that contain the
 \emph{k}-mer \emph{t}.
 
 \[
-f(t, S) = \left\vert \{ s \mid t \in C(s) \wedge s \in S \} \right\vert
+f(t, S) = \left\vert \{ s \mid t \in C_k(s) \wedge s \in S \} \right\vert
 \]
 
-Let \emph{T} be the set of \emph{k}-mers of a string \emph{s}, and
-$\min T$ be the lexicographically minimal \emph{k}-mer of \emph{T}. If
-the \emph{k}-mers of \emph{T} were sorted alphabetically, it would be
-the first \emph{k}-mer in the list.
+Let \emph{T} be the set of \emph{k}-mers of \emph{t}, and $\min T$ be
+the lexicographically minimal \emph{k}-mer of \emph{T}. If the
+\emph{k}-mers of \emph{T} were sorted alphabetically, it would be the
+first \emph{k}-mer in the list.
 
 Finally, $u_k(s, S)$ is the UniqTag, the lexicographically minimal
 \emph{k}-mer of those \emph{k}-mers of \emph{s} that are least frequent
-in \emph{S}. Typically, it is the first \emph{k}-mer in an
-alphabetically sorted list of the \emph{k}-mers of a gene that are
-unique to that gene.
+in \emph{S}.
 
 \[
 u_k(s, S) = \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
 \]
+
+Typically, $u_k(s, S)$ is the first \emph{k}-mer in an alphabetically
+sorted list of the \emph{k}-mers of a gene that are unique to that gene.
 
 \section{Results}\label{results}
 
@@ -189,39 +188,39 @@ identifiers to the genes of nine builds of the Ensembl human genome
 (\href{http://dx.doi.org/10.1093/nar/gkt1196}{Flicek, 2014}) spanning
 seven years and two major genome assemblies, NCBI36 up to build 54 and
 GRCh37 afterward. An identifier of nine peptides ($k=9$) was assigned to
-the first protein sequence, that with the smallest ENSP number, of each
-gene. The number of common UniqTag identifers between older builds, from
-build 40 to build 74, and the current build 75 is shown in Figure~1.
-Also shown is the number of common gene and protein identifiers (ENSG
-and ENSP accession numbers) between builds and the number of genes with
-identical peptide sequences between builds. Although less stable than
-the gene ID, the UniqTag is more stable than the protein ID and the
-peptide sequence.
+the first protein sequence, that with the smallest Ensembl protein
+(ENSP) accession number, of each gene. The number of common UniqTag
+identifiers between older builds from build 40 on and the current build
+75 is shown in Figure~1. Also shown is the number of common gene and
+protein identifiers (ENSG and ENSP accession numbers) between builds and
+the number of genes with identical peptide sequences between builds.
+Although less stable than the gene ID, the UniqTag is more stable than
+the protein ID and the peptide sequence.
 
 Whereas the gene and protein identifiers can, with effort, be lifted
 over from older builds to the newest build, the UniqTag identifier can
 be generated without any knowledge of previous assemblies, making it a
 much simpler operation. The number of identical peptide sequences
 between builds shows the stability that would be expected of using a
-message digest, such as SHA, of the peptide sequence as the identifier.
-Supplementary figure~S1 shows that the UniqTag stability is insensitive
+cryptographic hash value of the peptide sequence as the identifier.
+Supplementary Figure~S1 shows that the UniqTag stability is insensitive
 to the size of the UniqTag identifier for values of \emph{k} between 8
 and 50 peptides. The data for these figures are shown in supplementary
-table~S1.
+Table~S1.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics{ensembl.png}
-\caption{The number of common UniqTag identifers between older builds of
-the Ensembl human genome and the current build 75, the number of common
-gene and protein identifiers between builds, and the number of genes
-with identical peptide sequences between builds.}
+\caption{The number of common UniqTag identifiers between older builds
+of the Ensembl human genome and the current build 75, the number of
+common gene and protein identifiers between builds, and the number of
+genes with identical peptide sequences between builds.}
 \end{figure}
 
 \section*{Acknowledgements}\label{acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 
-The author thanks Nathaniel Street for his enthusiastic feedback, the
+The authors thank Nathaniel Street for his enthusiastic feedback, the
 SMarTForests project and the organizers of the 2014 Conifer Genome
 Summit that made our conversation possible.
 
