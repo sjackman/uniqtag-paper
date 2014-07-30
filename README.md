@@ -124,10 +124,11 @@ In such cases, genes that have the same UniqTag are distinguished by adding a
 numerical suffix to the UniqTag.
 
 The UniqTag is designed to be stable but will change in the following
-conditions: 1. when the sequence at the locus of the UniqTag changes; 2. when a
-least-frequent *k*-mer that is lexicographically smaller than the previous
-UniqTag is created; 3. when a duplicate *k*-mer is created elsewhere that
-results in the previous UniqTag no longer being a least-frequent *k*-mer.
+conditions: (1)&nbsp;when the sequence at the locus of the UniqTag changes;
+(2)&nbsp;when a least-frequent *k*-mer that is lexicographically smaller than
+the previous UniqTag is created; (3)&nbsp;when a duplicate *k*-mer is created
+elsewhere that results in the previous UniqTag no longer being a least-frequent
+*k*-mer.
 
 The special cases of merging and splitting gene models are interesting.
 Concatenating two gene models results in a gene whose UniqTag is the minimum of
