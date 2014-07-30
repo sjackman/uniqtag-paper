@@ -1,7 +1,8 @@
-all: README.html README.pdf UniqTag.pdf
+all: README.md index.html UniqTag.pdf
 
 clean:
-	rm -f README.html README.pdf UniqTag-body-orig.tex UniqTag-body.tex UniqTag.tex UniqTag.pdf
+	rm -f README.md index.html UniqTag.pdf \
+		UniqTag-body-orig.tex UniqTag-body.tex UniqTag.tex
 
 .PHONY: all clean
 .DELETE_ON_ERROR:
@@ -11,17 +12,15 @@ clean:
 
 UniqTag-body.tex: bioinfo/bioinfo.cls ensembl.png
 
-README.pdf: ensembl.png
-
 # Rules
 
-%.html: %.md
+README.md: UniqTag.md
+	pandoc -t markdown_github -o $@ $<
+
+index.html: UniqTag.md
 	pandoc -s --mathjax -o $@ $<
 
-%.pdf: %.md
-	pandoc -o $@ $<
-
-UniqTag-body-orig.tex: README.md
+%-body-orig.tex: %.md
 	pandoc -o $@ $<
 
 %-body.tex: %-body-orig.tex
