@@ -75,37 +75,6 @@ homology to orthologous genes.
 Methods
 =======
 
-A UniqTag can be generated from the nucleotide sequence of a gene or the
-translated peptide sequence of a protein-coding gene. Using the peptide
-sequence results in a UniqTag that is stable across synonymous changes to the
-coding sequence as well as to changes in the untranslated regions and introns
-of the gene. Since the amino acid alphabet is larger than the nucleotide
-alphabet, fewer characters are required for a *k*-mer to be likely unique,
-resulting in an aesthetically pleasing shorter identifier.
-
-When two gene models have identical *k*-mer compositions, they would be
-assigned the same UniqTag. It is also possible that two genes that have no
-unique *k*-mer and similar *k*-mer composition are assigned the same UniqTag.
-In such cases, genes that have the same UniqTag are distinguished by adding a
-numerical suffix to the UniqTag.
-
-The UniqTag is designed to be stable but will change in the following
-conditions: 1. when the sequence at the locus of the UniqTag changes; 2. when a
-least-frequent *k*-mer that is lexicographically smaller than the previous
-UniqTag is created; 3. when a duplicate *k*-mer is created elsewhere that
-results in the previous UniqTag no longer being a least-frequent *k*-mer.
-
-The special cases of merging and splitting gene models are interesting.
-Concatenating two gene models results in a gene whose UniqTag is the minimum of
-the two previous UniqTags, unless the new UniqTag spans the junction of the two
-sequences. Similarly when a gene model is split in two, one gene is assigned a
-new UniqTag and the other retains the previous UniqTag, unless the previous
-UniqTag spanned the junction.
-
-Importantly and in contrast, unlike naming the genes after the genomic contigs
-or scaffolds in which they are found, changing the order of the genes in a
-genome assembly has no effect on the UniqTag.
-
 The UniqTag is defined mathematically as follows. Let $\Sigma$ be an alphabet,
 such as the twenty standard amino acids or the four nucleotides. Let $\Sigma^k$
 be the set of all strings over $\Sigma$ of length *k*. Let *s* be a string over
@@ -139,6 +108,37 @@ $$
 
 Typically, $u_k(s, S)$ is the first *k*-mer in an alphabetically sorted list of
 the *k*-mers of a gene that are unique to that gene.
+
+A UniqTag can be generated from the nucleotide sequence of a gene or the
+translated peptide sequence of a protein-coding gene. Using the peptide
+sequence results in a UniqTag that is stable across synonymous changes to the
+coding sequence as well as to changes in the untranslated regions and introns
+of the gene. Since the amino acid alphabet is larger than the nucleotide
+alphabet, fewer characters are required for a *k*-mer to be likely unique,
+resulting in an aesthetically pleasing shorter identifier.
+
+When two gene models have identical *k*-mer compositions, they would be
+assigned the same UniqTag. It is also possible that two genes that have no
+unique *k*-mer and similar *k*-mer composition are assigned the same UniqTag.
+In such cases, genes that have the same UniqTag are distinguished by adding a
+numerical suffix to the UniqTag.
+
+The UniqTag is designed to be stable but will change in the following
+conditions: 1. when the sequence at the locus of the UniqTag changes; 2. when a
+least-frequent *k*-mer that is lexicographically smaller than the previous
+UniqTag is created; 3. when a duplicate *k*-mer is created elsewhere that
+results in the previous UniqTag no longer being a least-frequent *k*-mer.
+
+The special cases of merging and splitting gene models are interesting.
+Concatenating two gene models results in a gene whose UniqTag is the minimum of
+the two previous UniqTags, unless the new UniqTag spans the junction of the two
+sequences. Similarly when a gene model is split in two, one gene is assigned a
+new UniqTag and the other retains the previous UniqTag, unless the previous
+UniqTag spanned the junction.
+
+Importantly and in contrast, unlike naming the genes after the genomic contigs
+or scaffolds in which they are found, changing the order of the genes in a
+genome assembly has no effect on the UniqTag.
 
 Results
 =======
