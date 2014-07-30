@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Shaun D. Jackman, Joerg Bohlmann, Inanc Birol" />
+  <title>UniqTag: Content-derived unique and stable identifiers for gene annotation</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div id="header">
+<h1 class="title">UniqTag: Content-derived unique and stable identifiers for gene annotation</h1>
+<h2 class="author">Shaun D. Jackman, Joerg Bohlmann, Inanc Birol</h2>
+</div>
+<h1 id="summary">Summary</h1>
+<p>When working on an ongoing genome sequencing and assembly project, it is rather inconvenient when gene identifiers change from one build of the assembly to the next. The gene labelling system described here, UniqTag, addresses this common challenge. UniqTag assigns a unique identifier to each gene that is a representative <em>k</em>-mer, a string of length <em>k</em>, selected from the sequence of that gene. Unlike serial numbers, these identifiers are stable between different assemblies and annotations of the same data without requiring that previous annotations be lifted over by sequence alignment. We assign UniqTag identifiers to nine builds of the Ensembl human genome spanning seven years to demonstrate this stability.</p>
+<h1 id="availability-and-implementation">Availability and implementation</h1>
+<p>The implementation of UniqTag is available at</p>
+<p><code>https://github.com/sjackman/uniqtag</code></p>
+<p>Supplementary data and code to reproduce it is available at</p>
+<p><code>https://github.com/sjackman/uniqtag-paper</code></p>
+<h1 id="contact">Contact</h1>
+<p>Shaun Jackman &lt;sjackman@bcgsc.ca&gt;</p>
+<p>Inanc Birol &lt;ibirol@bcgsc.ca&gt;</p>
+<h1 id="introduction">Introduction</h1>
+<p>The task of annotating the genes of a genome sequence often follows genome assembly. These annotated genes are assigned unique identifiers by which they can be referenced. Assembly and annotation is frequently an iterative process, by refining the method or by the addition of more sequencing data. These gene identifiers would ideally be stable from one assembly and annotation to the next. The common practice is to use serial numbers to identify genes that are annotated by software such as MAKER (<a href="http://dx.doi.org/10.1104/pp.113.230144">Campbell, 2014</a>), which, although certainly unique, are not stable between assemblies. A single change in the assembly can result in a total renumbering of the annotated genes.</p>
+<p>One solution to stabilize identifiers is to assign them based on the content of the gene sequence. A cryptographic hash function such as SHA (Secure Hash Algorithm) (<a href="http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977">Dang, 2012</a>) derives a message digest from the sequence, such that two sequences with the same content will have the same message digest, and two sequences that differ will have different message digests. If a cryptographic hash were used to identify a gene, the same gene in two assemblies with identical content would be assigned identical identifiers. Yet, by design a slight change in the sequence, such as a single-character substitution, would result in a completely different digest.</p>
+<p>Locality-sensitive hashing in contrast aims to assign items that are similar to the same hash value. A hash function that assigns an identical identifier to a sequence after a modification of that sequence is desirable for labelling the genes of an ongoing genome annotation project. One such locality-sensitive hash function, MinHash, was employed to identify web pages with similar content (<a href="http://dx.doi.org/10.1109/SEQUEN.1997.666900">Broder, 1997</a>) by selecting a small representative set of words from a web page.</p>
+<p>UniqTag is inspired by MinHash. It selects a single representative <em>k</em>-mer from a sequence to assign a stable identifier to a gene. These identifiers are intended for systematic labelling of genes rather than assigning biological gene names, as the latter are typically based on biological function or homology to orthologous genes.</p>
+<h1 id="methods">Methods</h1>
+<p>The UniqTag is defined mathematically as follows. Let <span class="math">\(\Sigma\)</span> be an alphabet, such as the twenty standard amino acids or the four nucleotides. Let <span class="math">\(\Sigma^k\)</span> be the set of all strings over <span class="math">\(\Sigma\)</span> of length <em>k</em>. Let <em>s</em> be a string over <span class="math">\(\Sigma\)</span>, such as the peptide or nucleotide sequence of a gene. Let <span class="math">\(C(s)\)</span> be the set of all substrings of <em>s</em>, and <span class="math">\(C_k(s)\)</span> be the set of all <em>k</em>-mers of <em>s</em>, that is, all substrings of <em>s</em> with length <em>k</em>.</p>
+<p><span class="math">\[
+C_k(s) = C(s) \cap \Sigma^k
+\]</span></p>
+<p>Let <em>S</em> be a set of <em>n</em> strings <span class="math">\(\{s_0, \dots, s_n\}\)</span>, such as the peptide or nucleotide sequences of the annotated genes of a genome assembly. Let <span class="math">\(f(t, S)\)</span> be the frequency in <em>S</em> of a <em>k</em>-mer <em>t</em>, defined as the number of strings in <em>S</em> that contain the <em>k</em>-mer <em>t</em>.</p>
+<p><span class="math">\[
+f(t, S) = \left\vert \{ s \mid t \in C_k(s) \wedge s \in S \} \right\vert
+\]</span></p>
+<p>Let <em>T</em> be the set of <em>k</em>-mers of <em>t</em>, and <span class="math">\(\min T\)</span> be the lexicographically minimal <em>k</em>-mer of <em>T</em>. If the <em>k</em>-mers of <em>T</em> were sorted alphabetically, it would be the first <em>k</em>-mer in the list.</p>
+<p>Finally, <span class="math">\(u_k(s, S)\)</span> is the UniqTag, the lexicographically minimal <em>k</em>-mer of those <em>k</em>-mers of <em>s</em> that are least frequent in <em>S</em>.</p>
+<p><span class="math">\[
+u_k(s, S) = \min \mathop{\arg\,\min}\limits_{t \in C_k(s)} f(t, S)
+\]</span></p>
+<p>Typically, <span class="math">\(u_k(s, S)\)</span> is the first <em>k</em>-mer in an alphabetically sorted list of the <em>k</em>-mers of a gene that are unique to that gene.</p>
+<p>A UniqTag can be generated from the nucleotide sequence of a gene or the translated peptide sequence of a protein-coding gene. Using the peptide sequence results in a UniqTag that is stable across synonymous changes to the coding sequence as well as to changes in the untranslated regions and introns of the gene. Since the amino acid alphabet is larger than the nucleotide alphabet, fewer characters are required for a <em>k</em>-mer to be likely unique, resulting in an aesthetically pleasing shorter identifier.</p>
+<p>When two gene models have identical <em>k</em>-mer compositions, they would be assigned the same UniqTag. It is also possible that two genes that have no unique <em>k</em>-mer and similar <em>k</em>-mer composition are assigned the same UniqTag. In such cases, genes that have the same UniqTag are distinguished by adding a numerical suffix to the UniqTag.</p>
+<p>The UniqTag is designed to be stable but will change in the following conditions: (1) when the sequence at the locus of the UniqTag changes; (2) when a least-frequent <em>k</em>-mer that is lexicographically smaller than the previous UniqTag is created; (3) when a duplicate <em>k</em>-mer is created elsewhere that results in the previous UniqTag no longer being a least-frequent <em>k</em>-mer.</p>
+<p>The special cases of merging and splitting gene models are interesting. Concatenating two gene models results in a gene whose UniqTag is the minimum of the two previous UniqTags, unless the new UniqTag spans the junction of the two sequences. Similarly when a gene model is split in two, one gene is assigned a new UniqTag and the other retains the previous UniqTag, unless the previous UniqTag spanned the junction.</p>
+<p>Importantly and in contrast, unlike naming the genes after the genomic contigs or scaffolds in which they are found, changing the order of the genes in a genome assembly has no effect on the UniqTag.</p>
+<h1 id="results">Results</h1>
+<p>To demonstrate the stability and utility of UniqTag, we assigned identifiers to the genes of nine builds of the Ensembl human genome (<a href="http://dx.doi.org/10.1093/nar/gkt1196">Flicek, 2014</a>) spanning seven years and two major genome assemblies, NCBI36 up to build 54 and GRCh37 afterward. An identifier of nine peptides (<span class="math">\(k=9\)</span>) was assigned to the first protein sequence, that with the smallest Ensembl protein (ENSP) accession number, of each gene. The number of common UniqTag identifiers between older builds from build 40 on and the current build 75 is shown in Figure 1. Also shown is the number of common gene and protein identifiers (ENSG and ENSP accession numbers) between builds and the number of genes with peptide sequences that are identical between builds. Although less stable than the gene ID, the UniqTag is more stable than the protein ID and the peptide sequence.</p>
+<p>Whereas the gene and protein identifiers can, with effort, be lifted over from older builds to the newest build, the UniqTag identifier can be generated without any knowledge of previous assemblies, making it a much simpler operation. The number of identical peptide sequences between builds shows the stability that would be expected of using a cryptographic hash value of the peptide sequence as the identifier. Supplementary Figure S1 shows that the UniqTag stability is insensitive to the size of the UniqTag identifier for values of <em>k</em> between 8 and 50 peptides. The data for these figures are shown in supplementary Table S1.</p>
+<div class="figure">
+<img src="ensembl.png" alt="The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75, the number of common gene and protein identifiers between builds, and the number of genes with peptide sequences that are identical between builds." /><p class="caption">The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75, the number of common gene and protein identifiers between builds, and the number of genes with peptide sequences that are identical between builds.</p>
+</div>
+<h1 id="acknowledgements" class="unnumbered">Acknowledgements</h1>
+<p>The authors thank Nathaniel Street for his enthusiastic feedback, the SMarTForests project and the organizers of the 2014 Conifer Genome Summit that made our conversation possible.</p>
+<p><em>Funding</em>: This work was supported by the Natural Sciences and Engineering Research Council of Canada, Genome British Columbia, Genome Alberta, Genome Quebec and Genome Canada.</p>
+<h1 id="references" class="unnumbered">References</h1>
+<p><a href="http://dx.doi.org/10.1109/SEQUEN.1997.666900">Broder, A. Z. (1997)</a> On the resemblance and containment of documents. <em>Compression and Complexity of Sequences</em>, 1997 Proceedings, 21-29.<br /><a href="http://dx.doi.org/10.1104/pp.113.230144">Campbell, M. S. <em>et al.</em> (2014)</a> MAKER-P: a tool-kit for the rapid creation, management, and quality control of plant genome annotations. <em>Plant Physiology</em>, 164(2), 513-524.<br /><a href="http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977">Dang, Q. H. (2012)</a> Secure Hash Standard (SHS). <em>NIST FIPS</em>, 180(4), 1-35.<br /><a href="http://dx.doi.org/10.1093/nar/gkt1196">Flicek, P. <em>et al.</em> (2014)</a> Ensembl 2014. <em>Nucleic Acids Research</em>, 42(D1), D749-D755.</p>
+</body>
+</html>
