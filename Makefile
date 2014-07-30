@@ -1,7 +1,7 @@
-all: README.html README.pdf uniqtag.pdf
+all: README.html README.pdf UniqTag.pdf
 
 clean:
-	rm -f README.html README.pdf uniqtag-body-orig.tex uniqtag-body.tex uniqtag.tex uniqtag.pdf
+	rm -f README.html README.pdf UniqTag-body-orig.tex UniqTag-body.tex UniqTag.tex UniqTag.pdf
 
 .PHONY: all clean
 .DELETE_ON_ERROR:
@@ -9,7 +9,7 @@ clean:
 
 # Dependencies
 
-uniqtag-body.tex: bioinfo/bioinfo.cls ensembl.png
+UniqTag-body.tex: bioinfo/bioinfo.cls ensembl.png
 
 README.pdf: ensembl.png
 
@@ -21,7 +21,7 @@ README.pdf: ensembl.png
 %.pdf: %.md
 	pandoc -o $@ $<
 
-uniqtag-body-orig.tex: README.md
+UniqTag-body-orig.tex: README.md
 	pandoc -o $@ $<
 
 %-body.tex: %-body-orig.tex
