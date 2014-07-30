@@ -11,6 +11,8 @@ clean:
 
 uniqtag-body.tex: bioinfo/bioinfo.cls ensembl.png
 
+README.pdf: ensembl.png
+
 # Rules
 
 %.html: %.md
