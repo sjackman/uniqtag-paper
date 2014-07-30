@@ -72,8 +72,8 @@ intended for systematic labelling of genes rather than assigning biological
 gene names, as the latter are typically based on biological function or
 homology to orthologous genes.
 
-Description
-===========
+Methods
+=======
 
 A UniqTag can be generated from the nucleotide sequence of a gene or the
 translated peptide sequence of a protein-coding gene. Using the peptide
@@ -90,18 +90,21 @@ In such cases, genes that have the same UniqTag are distinguished by adding a
 numerical suffix to the UniqTag.
 
 The UniqTag is designed to be stable but will change in the following
-conditions: when the sequence at the locus of the UniqTag changes; when a
+conditions: 1. when the sequence at the locus of the UniqTag changes; 2. when a
 least-frequent *k*-mer that is lexicographically smaller than the previous
-UniqTag is created; when a duplicate *k*-mer is created elsewhere that results
-in the previous UniqTag no longer being a least-frequent *k*-mer.
+UniqTag is created; 3. when a duplicate *k*-mer is created elsewhere that
+results in the previous UniqTag no longer being a least-frequent *k*-mer.
 
+The special cases of merging and splitting gene models are interesting.
 Concatenating two gene models results in a gene whose UniqTag is the minimum of
 the two previous UniqTags, unless the new UniqTag spans the junction of the two
 sequences. Similarly when a gene model is split in two, one gene is assigned a
 new UniqTag and the other retains the previous UniqTag, unless the previous
-UniqTag spanned the junction. Importantly, unlike naming the genes after the
-genomic contigs or scaffolds in which they are found, changing the order of the
-genes in a genome assembly has no effect on the UniqTag.
+UniqTag spanned the junction.
+
+Importantly and in contrast, unlike naming the genes after the genomic contigs
+or scaffolds in which they are found, changing the order of the genes in a
+genome assembly has no effect on the UniqTag.
 
 The UniqTag is defined mathematically as follows. Let $\Sigma$ be an alphabet,
 such as the twenty standard amino acids or the four nucleotides. Let $\Sigma^k$
@@ -148,9 +151,9 @@ first protein sequence, that with the smallest Ensembl protein (ENSP) accession
 number, of each gene. The number of common UniqTag identifiers between older
 builds from build 40 on and the current build 75 is shown in Figure&nbsp;1.
 Also shown is the number of common gene and protein identifiers (ENSG and ENSP
-accession numbers) between builds and the number of genes with identical
-peptide sequences between builds. Although less stable than the gene ID, the
-UniqTag is more stable than the protein ID and the peptide sequence.
+accession numbers) between builds and the number of genes with peptide
+sequences that are identical between builds. Although less stable than the gene
+ID, the UniqTag is more stable than the protein ID and the peptide sequence.
 
 Whereas the gene and protein identifiers can, with effort, be lifted over from
 older builds to the newest build, the UniqTag identifier can be generated
@@ -164,8 +167,8 @@ in supplementary Table&nbsp;S1.
 
 ![The number of common UniqTag identifiers between older builds of the Ensembl
 human genome and the current build 75, the number of common gene and protein
-identifiers between builds, and the number of genes with identical peptide
-sequences between builds.](ensembl.png)
+identifiers between builds, and the number of genes with peptide sequences that
+are identical between builds.](ensembl.png)
 
 Acknowledgements {-}
 ================
