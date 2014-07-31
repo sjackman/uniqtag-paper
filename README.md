@@ -74,7 +74,7 @@ To demonstrate the stability and utility of UniqTag, we assigned identifiers to 
 
 Whereas the gene and protein identifiers can, with effort, be lifted over from older builds to the newest build, the UniqTag identifier can be generated without any knowledge of previous assemblies, making it a much simpler operation. The number of identical peptide sequences between builds shows the stability that would be expected of using a cryptographic hash value of the peptide sequence as the identifier. Supplementary Figure S1 shows that the UniqTag stability is insensitive to the size of the UniqTag identifier for values of *k* between 8 and 50 peptides. The data for these figures are shown in supplementary Table S1.
 
-![The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75, the number of common gene and protein identifiers between builds, and the number of genes with peptide sequences that are identical between builds.](ensembl.png)
+![The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75, the number of common gene and protein identifiers between builds, and the number of genes with peptide sequences that are identical between builds.](figure/ensembl.png)
 
 Acknowledgements
 ================

@@ -169,7 +169,7 @@ in supplementary Table&nbsp;S1.
 ![The number of common UniqTag identifiers between older builds of the Ensembl
 human genome and the current build 75, the number of common gene and protein
 identifiers between builds, and the number of genes with peptide sequences that
-are identical between builds.](ensembl.png)
+are identical between builds.](figure/ensembl.png)
 
 Acknowledgements {-}
 ================
