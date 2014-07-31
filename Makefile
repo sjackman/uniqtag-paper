@@ -70,7 +70,7 @@ bioinfo01.zip:
 # Unzip the Bioinformatics journal LaTeX template
 bioinfo/bioinfo.cls: bioinfo01.zip
 	unzip -od bioinfo $<
-	touch $@
+	sed -i '' -e 's/Oxford University Press/Shaun Jackman/' $@
 
 # Supplementary material
 
