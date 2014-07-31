@@ -81,7 +81,7 @@ Acknowledgements
 
 The authors thank Nathaniel Street for his enthusiastic feedback, the SMarTForests project and the organizers of the 2014 Conifer Genome Summit that made our conversation possible.
 
-*Funding*: This work was supported by the Natural Sciences and Engineering Research Council of Canada, Genome British Columbia, Genome Alberta, Genome Quebec and Genome Canada.
+*Funding*: This work was supported by the Natural Sciences and Engineering Research Council of Canada, Genome British Columbia, Genome Quebec and Genome Canada.
 
 References
 ==========
