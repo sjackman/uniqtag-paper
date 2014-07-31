@@ -16,3 +16,4 @@ data/*.uniqtag[0-9]
 data/*.uniqtag[0-9][0-9]
 data/*.uniqtag[0-9][0-9][0-9]
 data/*.venn
+figure/*~
