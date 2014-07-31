@@ -89,7 +89,7 @@ ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
 	scale_colour_brewer(palette = 'Set2') +
 	guides(colour = guide_legend(reverse = TRUE)) +
 	theme_bw() +
-	xlab('Size of UniqTag k-mer (bp)') +
+	xlab('Size of UniqTag k-mer (aa)') +
 	ylab('Identifiers in common with Ensembl build 75')
 ```
 
