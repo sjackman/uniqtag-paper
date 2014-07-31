@@ -1,0 +1,112 @@
+---
+title: 'Supplementary material for UniqTag: Content-derived unique and stable identifiers for gene annotation'
+author: 'Shaun Jackman'
+output:
+  html_document:
+    highlight: pygments
+---
+
+# Supplementary material
+
+The following supplementary material of the UniqTag paper give the R code and the data, shown in supplementary table S1, used to generate figure 1 from the main material of the paper and supplementary figure S1.
+
+```{r install.packages, eval=FALSE, include=FALSE}
+install.packages('ggplot2')
+install.packages('kable')
+install.packages('reshape2')
+install.packages('scales')
+```
+
+# Load libraries
+```{r libraries, message=FALSE}
+library(ggplot2)
+library(knitr) # for kable
+library(reshape2)
+library(scales) # for alpha
+```
+
+# Read the data
+```{r data}
+data.orig <- read.delim('UniqTag-supp.tsv',
+	colClasses = c(A = 'factor', B = 'factor'))
+x <- do.call(rbind, strsplit(as.character(data.orig$Table), '.', fixed = TRUE))
+colnames(x) <- c('Data', 'Transform', 'Identifier')
+data <- cbind(data.orig, x)
+rm(x)
+data$k <- as.integer(gsub('^[a-z]*', '', data$Identifier))
+
+build.wide <- with(data,
+	data.frame(Build.A = A, Build.B = B,
+		Num.A = Only.A + Both, Num.B = Only.B + Both))
+build.tall <- melt(build.wide, id.vars = c('Build.A', 'Build.B'),
+	variable.name = 'Build', value.name = 'Count')
+```
+
+# Figure 1. Plot the number of common identifiers vs. older build
+The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75, the number of common gene and protein identifiers between builds, and the number of genes with peptide sequences that are identical between builds.
+```{r ensembl, fig.width=6, fig.height=5, dpi=150}
+data.subset <- subset(data, data$k == 9 | is.na(data$k))
+aes.data <- aes(x = A, y = Both,
+	group = Table, colour = Identifier)
+aes.build <- aes(x = Build.A, y = Count,
+	group = Build, linetype = Build, shape = Build)
+ggplot() +
+	geom_point(aes.data, data.subset) +
+	geom_line(aes.data, data.subset) +
+	scale_colour_brewer(palette = 'Set1',
+		breaks = c('gene', 'uniqtag9', 'id', 'seq'),
+		labels = c('Gene ID (ENSG)', 'UniqTag (9-mer)',
+			'Protein ID (ENSP)', 'Identical peptide sequence')) +
+
+	geom_point(aes.build, build.tall) +
+	geom_line(aes.build, build.tall) +
+	scale_linetype_manual(name = 'Number of genes',
+		breaks = c('Num.B', 'Num.A'),
+		labels = c('Ensembl build 75', 'Older Ensembl build'),
+		values = c('solid', 'dashed')) +
+	scale_shape_manual(name = 'Number of genes',
+		breaks = c('Num.B', 'Num.A'),
+		labels = c('Ensembl build 75', 'Older Ensembl build'),
+		values = c(20, 32)) +
+
+	theme_bw() +
+	theme(legend.position = c(1.0, 0),
+		legend.justification = c(1, 0),
+		legend.box.just = 'right',
+		legend.background = element_rect(fill = alpha('white', 0))) +
+	xlab('Older Ensembl build') +
+	ylab('Identifiers in common with Ensembl build 75')
+```
+
+# Figure S1. Plot the number of common identifiers vs. k
+The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75 for different values of k.
+```{r k, fig.width=6, fig.height=5, dpi=150}
+ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
+	geom_point() +
+	geom_line() +
+	scale_x_continuous(trans = log_trans(),
+		breaks = c(1, 2, 5, 10, 20, 50, 100, 200)) +
+	scale_colour_brewer(palette = 'Set2') +
+	guides(colour = guide_legend(reverse = TRUE)) +
+	theme_bw() +
+	xlab('Size of UniqTag k-mer (bp)') +
+	ylab('Identifiers in common with Ensembl build 75')
+```
+
+# Listing S1. UniqTag 1.0
+This listing shows the source of UniqTag 1.0, implemented in Ruby.
+```ruby
+`r paste(readLines('data/uniqtag'), collapse = '\n')`
+```
+
+# Listing S2. Calculate the number of common identifiers
+This *Makefile* script calculates number of common identifiers between older builds of the Ensembl human genome and the current build 75 for gene ID (ENSG), protein ID (ENSP), identical peptide sequence and UniqTag for different values of k.
+```makefile
+`r paste(readLines('data/Makefile'), collapse = '\n')`
+```
+
+# Table S1. The number of common identifiers
+The number of common identifiers between older builds of the Ensembl human genome and the current build 75 for gene ID (ENSG), protein ID (ENSP), exact peptide sequence and UniqTag for different values of k. These data are used to plot the above figures. It is also available in tab-separated values (TSV) format.
+```{r data-table, results='asis'}
+kable(data)
+```

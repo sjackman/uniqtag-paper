@@ -4,3 +4,15 @@
 *.log
 bioinfo
 bioinfo01.zip
+data/*.comm
+data/*.fa
+data/*.fa.gz
+data/*.gene
+data/*.id
+data/*.seq
+data/*.sort
+data/*.tsv
+data/*.uniqtag[0-9]
+data/*.uniqtag[0-9][0-9]
+data/*.uniqtag[0-9][0-9][0-9]
+data/*.venn

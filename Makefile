@@ -2,21 +2,37 @@
 # Copyright 2014 Shaun Jackman
 
 # Render the manuscript
-all: README.md index.html UniqTag.pdf
+all: README.md index.html UniqTag.pdf \
+	UniqTag-supp.md UniqTag-supp.html UniqTag-supp.pdf
 
 # Remove all generated files
 clean:
 	rm -f README.md index.html UniqTag.pdf \
-		UniqTag-body-orig.tex UniqTag-body.tex UniqTag.tex
+		UniqTag-body-orig.tex UniqTag-body.tex UniqTag.tex \
+		UniqTag-supp.md UniqTag-supp.html UniqTag-supp.pdf
 
-.PHONY: all clean
+# Install dependencies
+install-deps: /usr/local/bin/brew
+	$(MAKE) -C data $@
+	brew install imagemagick r wget
+
+# Check for Homebrew
+/usr/local/bin/brew:
+	@if brew --version >/dev/null 2>/dev/null; then \
+		echo Install Homebrew http://brew.sh/ or Linuxbrew http://brew.sh/linuxbrew/; \
+	fi
+
+.PHONY: all clean install-deps
 .DELETE_ON_ERROR:
 .SECONDARY:
 
 # Dependencies
 
-# Rendering the LaTeX manuscript requires the LaTeX template and figures
-UniqTag-body.tex: bioinfo/bioinfo.cls ensembl.png
+# Render the figures by knitting the RMarkdown
+figure/ensembl.png: UniqTag-supp.md
+
+# Rendering the LaTeX manuscript requires figures and the LaTeX template
+UniqTag-body.tex: figure/ensembl.png bioinfo/bioinfo.cls
 
 # Rules
 
@@ -55,3 +71,26 @@ bioinfo01.zip:
 bioinfo/bioinfo.cls: bioinfo01.zip
 	unzip -od bioinfo $<
 	touch $@
+
+# Supplementary material
+
+# Run the analysis
+data/UniqTag.tsv:
+	$(MAKE) -C data
+
+# Copy the results of the analysis to this directory
+UniqTag-supp.tsv: data/UniqTag.tsv
+	cp -a data/UniqTag.tsv $@
+
+# Generate Markdown from RMarkdown
+%.md: %.Rmd %.tsv
+	Rscript -e 'knitr::knit("$<", "$@")'
+	mogrify -units PixelsPerInch -density 300 figure/*.png
+
+# Generate HTML from RMarkdown
+%.html: %.Rmd %.tsv
+	Rscript -e 'rmarkdown::render("$<", "html_document", "$@")'
+
+# Generate PDF from RMarkdown
+%.pdf: %.Rmd %.tsv
+	Rscript -e 'rmarkdown::render("$<", "pdf_document", "$@")'

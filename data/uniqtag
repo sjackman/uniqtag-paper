@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+# Determine a unique substring (k-mer) of each string
+# Copyright 2014 Shaun Jackman
+
+require 'optparse'
+
+class String
+  # Iterate over each k-mer
+  def each_kmer k
+    return enum_for(:each_kmer, k) unless block_given?
+    (0 .. length - k).each { |i|
+      kmer = self[i, k]
+      yield kmer unless kmer =~ /~/
+    }
+  end
+end
+
+class Array
+  # Append a serial number to distinguish duplicate strings
+  def dedup
+    each_with_object(Hash.new(0)).map { |x, count|
+      "#{x}-#{count[x] += 1}"
+    }
+  end
+end
+
+# Count the k-mers in a set of strings
+def count_kmer seqs, k
+  seqs.each_with_object(Hash.new(0)) { |seq, counts|
+    seq.each_kmer(k).to_a.uniq.each { |kmer|
+      counts[kmer] += 1
+    }
+  }
+end
+
+# Return the unique tag of the specified string
+def get_tag seq, kmer_counts, k
+  _, tag = seq.each_kmer(k).map { |kmer|
+    [kmer_counts[kmer], kmer]
+  }.min
+  tag || seq.split('~').min
+end
+
+# Parse command line options
+k = 9
+OptionParser.new do |opts|
+  opts.banner = "Usage: uniqtag [-k N] [FILE]..."
+  opts.version = "0.1.0"
+  opts.release = nil
+
+  opts.on("-k", "--kmer N", OptionParser::DecimalInteger,
+      "Size of the unique tag (default 9)") do |n|
+    k = n
+  end
+end.parse!
+
+# Read strings and write unique tags
+seqs = ARGF.each_line.reject { |s|
+  s =~ /^>/
+}.map { |s|
+  s.chomp.upcase
+}
+kmer_counts = count_kmer seqs, k
+puts seqs.map { |seq| get_tag(seq, kmer_counts, k) }.dedup
