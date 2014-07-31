@@ -2,6 +2,8 @@
 *-body.tex
 *.aux
 *.log
+.Rhistory
+.Rproj.user
 bioinfo
 bioinfo01.zip
 data/*.comm
