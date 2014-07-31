@@ -8,7 +8,7 @@ output:
 
 # Supplementary material
 
-The following supplementary material of the UniqTag paper give the R code and the data, shown in supplementary table S1, used to generate figure 1 from the main material of the paper and supplementary figure S1.
+The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and supplementary Figure S1.
 
 
 
@@ -78,8 +78,8 @@ ggplot() +
 
 ![plot of chunk ensembl](figure/ensembl.png) 
 
-# Figure S1. Plot the number of common identifiers vs. k
-The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75 for different values of k.
+# Figure S1. Plot the number of common identifiers vs. *k*
+The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75 for different values of *k*.
 
 ```r
 ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
@@ -87,17 +87,17 @@ ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
 	geom_line() +
 	scale_x_continuous(trans = log_trans(),
 		breaks = c(1, 2, 5, 10, 20, 50, 100, 200)) +
-	scale_colour_brewer(palette = 'Set2') +
+	scale_colour_brewer(name = 'Older Ensembl build', palette = 'Set2') +
 	guides(colour = guide_legend(reverse = TRUE)) +
 	theme_bw() +
-	xlab('Size of UniqTag k-mer (bp)') +
+	xlab('Size of UniqTag k-mer (aa)') +
 	ylab('Identifiers in common with Ensembl build 75')
 ```
 
 ![plot of chunk k](figure/k.png) 
 
 # Listing S1. UniqTag 1.0
-This listing shows the source of UniqTag 1.0, implemented in Ruby.
+This listing shows the source of [UniqTag 1.0](data/uniqtag), implemented in Ruby.
 ```ruby
 #!/usr/bin/env ruby
 # Determine a unique substring (k-mer) of each string
@@ -166,7 +166,7 @@ puts seqs.map { |seq| get_tag(seq, kmer_counts, k) }.dedup
 ```
 
 # Listing S2. Calculate the number of common identifiers
-This *Makefile* script calculates number of common identifiers between older builds of the Ensembl human genome and the current build 75 for gene ID (ENSG), protein ID (ENSP), identical peptide sequence and UniqTag for different values of k.
+This [Makefile](data/Makefile) script calculates the data used to plot the above figures.
 ```makefile
 # The supplementary material for the UniqTag paper
 # UniqTag: Content-derived unique and stable identifiers for gene annotation
@@ -339,7 +339,7 @@ UniqTag.tsv: \
 ```
 
 # Table S1. The number of common identifiers
-The number of common identifiers between older builds of the Ensembl human genome and the current build 75 for gene ID (ENSG), protein ID (ENSP), exact peptide sequence and UniqTag for different values of k. These data are used to plot the above figures. It is also available in tab-separated values (TSV) format.
+These data are used to plot the above figures. They are also available in [tab-separated values (TSV) format](UniqTag-supp.tsv).
 
 ```r
 kable(data)
