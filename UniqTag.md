@@ -3,8 +3,8 @@ title: 'UniqTag: Content-derived unique and stable identifiers for gene annotati
 author: 'Shaun D. Jackman, Joerg Bohlmann, Inanc Birol'
 ---
 
-Summary
-=======
+Abstract {-}
+================================================================================
 
 When working on an ongoing genome sequencing and assembly project, it is rather
 inconvenient when gene identifiers change from one build of the assembly to the
@@ -17,26 +17,16 @@ previous annotations be lifted over by sequence alignment. We assign UniqTag
 identifiers to nine builds of the Ensembl human genome spanning seven years to
 demonstrate this stability.
 
-Availability and implementation
-===============================
+Availability and implementation {-}
+================================================================================
 
-The implementation of UniqTag is available at
+| The implementation of UniqTag is available at
+| `https://github.com/sjackman/uniqtag`
+| Supplementary data and code to reproduce it is available at
+| `https://github.com/sjackman/uniqtag-paper`
 
-`https://github.com/sjackman/uniqtag`
-
-Supplementary data and code to reproduce it is available at
-
-`https://github.com/sjackman/uniqtag-paper`
-
-Contact
-=======
-
-Shaun Jackman &lt;sjackman@bcgsc.ca&gt;
-
-Inanc Birol &lt;ibirol@bcgsc.ca&gt;
-
-Introduction
-============
+Introduction {-}
+================================================================================
 
 The task of annotating the genes of a genome sequence often follows genome
 assembly. These annotated genes are assigned unique identifiers by which they
@@ -72,8 +62,8 @@ intended for systematic labelling of genes rather than assigning biological
 gene names, as the latter are typically based on biological function or
 homology to orthologous genes.
 
-Methods
-=======
+Methods {-}
+================================================================================
 
 The UniqTag is defined mathematically as follows. Let $\Sigma$ be an alphabet,
 such as the twenty standard amino acids or the four nucleotides. Let $\Sigma^k$
@@ -141,8 +131,8 @@ Importantly and in contrast, unlike naming the genes after the genomic contigs
 or scaffolds in which they are found, changing the order of the genes in a
 genome assembly has no effect on the UniqTag.
 
-Results
-=======
+Results {-}
+================================================================================
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to
 the genes of nine builds of the Ensembl human genome ([Flicek, 2014][])
@@ -172,7 +162,7 @@ identifiers between builds, and the number of genes with peptide sequences that
 are identical between builds.](figure/ensembl.png)
 
 Acknowledgements {-}
-================
+================================================================================
 
 The authors thank Nathaniel Street for his enthusiastic feedback, the
 SMarTForests project and the organizers of the 2014 Conifer Genome Summit that
@@ -183,7 +173,7 @@ Research Council of Canada, Genome British Columbia, Genome Quebec and Genome
 Canada.
 
 References {-}
-==========
+================================================================================
 
 [Broder, A. Z. (1997)][Broder, 1997]
 On the resemblance and containment of documents.

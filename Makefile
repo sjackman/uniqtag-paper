@@ -8,7 +8,7 @@ all: README.md index.html UniqTag.pdf \
 # Remove all generated files
 clean:
 	rm -f README.md index.html UniqTag.pdf \
-		UniqTag-body-orig.tex UniqTag-body.tex UniqTag.tex \
+		UniqTag-body.tex UniqTag.tex \
 		UniqTag-supp.md UniqTag-supp.html UniqTag-supp.pdf
 
 # Install dependencies
@@ -32,7 +32,7 @@ install-deps: /usr/local/bin/brew
 figure/ensembl.png: UniqTag-supp.md
 
 # Rendering the LaTeX manuscript requires figures and the LaTeX template
-UniqTag-body.tex: figure/ensembl.png bioinfo/bioinfo.cls
+UniqTag-body.tex: figure/ensembl.png
 
 # Rules
 
@@ -45,15 +45,8 @@ index.html: UniqTag.md
 	pandoc -s --mathjax -o $@ $<
 
 # Generate TeX from Markdown
-%-body-orig.tex: %.md
+%-body.tex: %.md
 	pandoc -o $@ $<
-
-# Munge the TeX
-%-body.tex: %-body-orig.tex
-	sed -e 's/\\section{Introduction}/\\end{abstract}&/' \
-		-e 's/\\begin{longtable}/\\begin{table}[!b]\\centering\\begin{tabular}/' \
-		-e 's/\\end{longtable}/\\end{tabular}\\end{table}/' \
-		-e 's/\\endhead//' $< >$@
 
 # Add the TeX header and footer
 %.tex: %-header.tex %-body.tex %-footer.tex
@@ -61,16 +54,7 @@ index.html: UniqTag.md
 
 # Render the PDF from the TeX
 %.pdf: %.tex
-	TEXINPUTS=.:bioinfo: pdflatex $<
-
-# Download the Bioinformatics journal LaTeX template
-bioinfo01.zip:
-	wget http://www.oxfordjournals.org/our_journals/bioinformatics/for_authors/bioinfo01.zip
-
-# Unzip the Bioinformatics journal LaTeX template
-bioinfo/bioinfo.cls: bioinfo01.zip
-	unzip -od bioinfo $<
-	sed -i '' -e 's/Oxford University Press/Shaun Jackman/' $@
+	pdflatex $<
 
 # Supplementary material
 
