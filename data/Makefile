@@ -39,6 +39,10 @@ Homo_sapiens.NCBI36.%.pep.all.fa.gz:
 Homo_sapiens.GRCh37.%.pep.all.fa.gz:
 	wget ftp://ftp.ensembl.org/pub/release-$*/fasta/homo_sapiens/pep/Homo_sapiens.GRCh37.$*.pep.all.fa.gz
 
+# Download Ensembl Human genome GRCh38
+Homo_sapiens.GRCh38.%.pep.all.fa.gz:
+	wget -O $@ ftp://ftp.ensembl.org/pub/release-$*/fasta/homo_sapiens/pep/Homo_sapiens.GRCh38.pep.all.fa.gz
+
 # Uncompress FASTA and remove line breaks
 %.fa: %.fa.gz
 	seqtk seq $< >$@
