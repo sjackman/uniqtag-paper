@@ -17,13 +17,8 @@ previous annotations be lifted over by sequence alignment. We assign UniqTag
 identifiers to nine builds of the Ensembl human genome spanning seven years to
 demonstrate this stability.
 
-Availability and implementation {-}
-================================================================================
-
-| The implementation of UniqTag is available at
-| `https://github.com/sjackman/uniqtag`
-| Supplementary data and code to reproduce it is available at
-| `https://github.com/sjackman/uniqtag-paper`
+The implementation of UniqTag is available at <https://github.com/sjackman/uniqtag>.
+Supplementary material and code to reproduce it is available at <https://github.com/sjackman/uniqtag-paper>.
 
 Introduction {-}
 ================================================================================
