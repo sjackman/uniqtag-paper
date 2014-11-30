@@ -151,11 +151,6 @@ UniqTag stability is insensitive to the size of the UniqTag identifier for
 values of *k* between 8 and 50 peptides. The data for these figures are shown
 in supplementary Table&nbsp;S1.
 
-![The number of common UniqTag identifiers between older builds of the Ensembl
-human genome and build 75, the number of common gene and protein identifiers
-between builds, and the number of genes with peptide sequences that are
-identical between builds.](figure/ensembl.png)
-
 Acknowledgements {-}
 ================================================================================
 
@@ -192,3 +187,11 @@ References {-}
 [dang2012shs]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
 [flicek2013ensembl]: http://dx.doi.org/10.1093/nar/gkt1196
 [wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
+
+Figure Legends {-}
+================================================================================
+
+![The number of common UniqTag identifiers between older builds of the Ensembl
+human genome and build 75, the number of common gene and protein identifiers
+between builds, and the number of genes with peptide sequences that are
+identical between builds.](figure/ensembl.png)
