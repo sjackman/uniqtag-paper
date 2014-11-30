@@ -141,6 +141,9 @@ numbers) between builds and the number of genes with peptide sequences that are
 identical between builds. Although less stable than the gene ID, the UniqTag is
 more stable than the protein ID and the peptide sequence.
 
+Conclusions {-}
+================================================================================
+
 Whereas the gene and protein identifiers can, with effort, be lifted over from
 older builds to the newest build, the UniqTag identifier can be generated
 without any knowledge of previous assemblies, making it a much simpler
