@@ -34,13 +34,13 @@ can be referenced. Assembly and annotation is frequently an iterative process,
 by refining the method or by the addition of more sequencing data. These gene
 identifiers would ideally be stable from one assembly and annotation to the
 next. The common practice is to use serial numbers to identify genes that are
-annotated by software such as MAKER ([Campbell, 2014][]), which, although
+annotated by software such as MAKER [[1][campbell2014maker]], which, although
 certainly unique, are not stable between assemblies. A single change in the
 assembly can result in a total renumbering of the annotated genes.
 
 One solution to stabilize identifiers is to assign them based on the content of
 the gene sequence. A cryptographic hash function such as SHA (Secure Hash
-Algorithm) ([Dang, 2012][]) derives a message digest from the sequence, such
+Algorithm) [[2][dang2012shs]] derives a message digest from the sequence, such
 that two sequences with the same content will have the same message digest, and
 two sequences that differ will have different message digests. If a
 cryptographic hash were used to identify a gene, the same gene in two
@@ -53,8 +53,8 @@ the same hash value. A hash function that assigns an identical identifier to a
 sequence after a modification of that sequence is desirable for labelling the
 genes of an ongoing genome annotation project. One such locality-sensitive hash
 function, MinHash, was employed to identify web pages with similar content
-([Broder, 1997][]) by selecting a small representative set of words from a web
-page.
+[[3][broder1997resemblance]] by selecting a small representative set of words
+from a web page.
 
 UniqTag is inspired by MinHash. It selects a single representative *k*-mer from
 a sequence to assign a stable identifier to a gene. These identifiers are
@@ -135,7 +135,7 @@ Results {-}
 ================================================================================
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to
-the genes of nine builds of the Ensembl human genome ([Flicek, 2014][])
+the genes of nine builds of the Ensembl human genome [[4][flicek2013ensembl]]
 spanning seven years and two major genome assemblies, NCBI36 up to build 54 and
 GRCh37 afterward. An identifier of nine peptides ($k=9$) was assigned to the
 first protein sequence, that with the smallest Ensembl protein (ENSP) accession
@@ -175,21 +175,24 @@ Canada.
 References {-}
 ================================================================================
 
-[Broder, A. Z. (1997)][Broder, 1997]
-On the resemblance and containment of documents.
-*Compression and Complexity of Sequences*, 1997 Proceedings, 21-29.  
-[Campbell, M. S. *et al.* (2014)][Campbell, 2014]
-MAKER-P: a tool-kit for the rapid creation, management, and quality control of
-plant genome annotations.
-*Plant Physiology*, 164(2), 513-524.  
-[Dang, Q. H. (2012)][Dang, 2012]
-Secure Hash Standard (SHS).
-*NIST FIPS*, 180(4), 1-35.  
-[Flicek, P. *et al.* (2014)][Flicek, 2014]
-Ensembl 2014.
-*Nucleic Acids Research*, 42(D1), D749-D755.
+| [1]&nbsp;[Campbell MS, Law MY, Holt C, Stein JC, Moghe GD, et al. (2014)][campbell2014maker]
+  MAKER-P: a tool-kit for the rapid creation, management, and quality control of
+  plant genome annotations.
+  Plant Physiology 164: 513-524.
+  doi:10.1104/pp.113.230144
+| [2]&nbsp;[Dang QH (2012)][dang2012shs]
+  Secure Hash Standard (SHS).
+  NIST FIPS 180: 1-35.
+| [3]&nbsp;[Broder AZ (1997)][broder1997resemblance]
+  On the resemblance and containment of documents.
+  Compression and Complexity of Sequences 1997 Proceedings: 21-29.
+  doi:10.1109/SEQUEN.1997.666900
+| [4]&nbsp;[Flicek P, Amode MR, Barrell D, Beal K, Billis K, et al. (2013)][flicek2013ensembl]
+  Ensembl 2014.
+  Nucleic Acids Research 42: D749-D755.
+  doi:10.1093/nar/gkt1196
 
-[Broder, 1997]: http://dx.doi.org/10.1109/SEQUEN.1997.666900
-[Campbell, 2014]: http://dx.doi.org/10.1104/pp.113.230144
-[Dang, 2012]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
-[Flicek, 2014]: http://dx.doi.org/10.1093/nar/gkt1196
+[broder1997resemblance]: http://dx.doi.org/10.1109/SEQUEN.1997.666900
+[campbell2014maker]: http://dx.doi.org/10.1104/pp.113.230144
+[dang2012shs]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
+[flicek2013ensembl]: http://dx.doi.org/10.1093/nar/gkt1196
