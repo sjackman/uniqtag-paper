@@ -55,7 +55,7 @@ UniqTag is inspired by MinHash. It selects a single representative *k*-mer from
 a sequence to assign a stable identifier to a gene. These identifiers are
 intended for systematic labelling of genes rather than assigning biological
 gene names, as the latter are typically based on biological function or
-homology to orthologous genes.
+homology to orthologous genes [[4][wain2002guidelines]].
 
 Methods {-}
 ================================================================================
@@ -130,7 +130,7 @@ Results {-}
 ================================================================================
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to
-the genes of nine builds of the Ensembl human genome [[4][flicek2013ensembl]]
+the genes of nine builds of the Ensembl human genome [[5][flicek2013ensembl]]
 spanning seven years and two major genome assemblies, NCBI36 up to build 54 and
 GRCh37 afterward. An identifier of nine peptides ($k=9$) was assigned to the
 first protein sequence, that with the smallest Ensembl protein (ENSP) accession
@@ -182,7 +182,11 @@ References {-}
   On the resemblance and containment of documents.
   Compression and Complexity of Sequences 1997 Proceedings: 21-29.
   doi:10.1109/SEQUEN.1997.666900
-| [4]&nbsp;[Flicek P, Amode MR, Barrell D, Beal K, Billis K, et al. (2013)][flicek2013ensembl]
+| [4]&nbsp;[Wain HM, Bruford EA, Lovering RC, Lush MJ, Wright MW, Povey S (2002)][wain2002guidelines]
+  Guidelines for human gene nomenclature.
+  Genomics 79: 464-470.
+  doi:10.1006/geno.2002.6748
+| [5]&nbsp;[Flicek P, Amode MR, Barrell D, Beal K, Billis K, et al. (2013)][flicek2013ensembl]
   Ensembl 2014.
   Nucleic Acids Research 42: D749-D755.
   doi:10.1093/nar/gkt1196
@@ -191,3 +195,4 @@ References {-}
 [campbell2014maker]: http://dx.doi.org/10.1104/pp.113.230144
 [dang2012shs]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
 [flicek2013ensembl]: http://dx.doi.org/10.1093/nar/gkt1196
+[wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
