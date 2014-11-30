@@ -135,11 +135,11 @@ spanning seven years and two major genome assemblies, NCBI36 up to build 54 and
 GRCh37 afterward. An identifier of nine peptides ($k=9$) was assigned to the
 first protein sequence, that with the smallest Ensembl protein (ENSP) accession
 number, of each gene. The number of common UniqTag identifiers between older
-builds from build 40 on and the current build 75 is shown in Figure&nbsp;1.
-Also shown is the number of common gene and protein identifiers (ENSG and ENSP
-accession numbers) between builds and the number of genes with peptide
-sequences that are identical between builds. Although less stable than the gene
-ID, the UniqTag is more stable than the protein ID and the peptide sequence.
+builds from build 40 on and build 75 is shown in Figure&nbsp;1. Also shown is
+the number of common gene and protein identifiers (ENSG and ENSP accession
+numbers) between builds and the number of genes with peptide sequences that are
+identical between builds. Although less stable than the gene ID, the UniqTag is
+more stable than the protein ID and the peptide sequence.
 
 Whereas the gene and protein identifiers can, with effort, be lifted over from
 older builds to the newest build, the UniqTag identifier can be generated
@@ -152,9 +152,9 @@ values of *k* between 8 and 50 peptides. The data for these figures are shown
 in supplementary Table&nbsp;S1.
 
 ![The number of common UniqTag identifiers between older builds of the Ensembl
-human genome and the current build 75, the number of common gene and protein
-identifiers between builds, and the number of genes with peptide sequences that
-are identical between builds.](figure/ensembl.png)
+human genome and build 75, the number of common gene and protein identifiers
+between builds, and the number of genes with peptide sequences that are
+identical between builds.](figure/ensembl.png)
 
 Acknowledgements {-}
 ================================================================================
