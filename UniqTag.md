@@ -3,7 +3,7 @@ title: 'UniqTag: Content-derived unique and stable identifiers for gene annotati
 author: 'Shaun D. Jackman, Joerg Bohlmann, Inanc Birol'
 ---
 
-Abstract {-}
+Abstract
 ================================================================================
 
 When working on an ongoing genome sequencing and assembly project, it is rather
@@ -20,7 +20,7 @@ demonstrate this stability.
 The implementation of UniqTag is available at <https://github.com/sjackman/uniqtag>.
 Supplementary material and code to reproduce it is available at <https://github.com/sjackman/uniqtag-paper>.
 
-Introduction {-}
+Introduction
 ================================================================================
 
 The task of annotating the genes of a genome sequence often follows genome
@@ -59,7 +59,7 @@ homology to orthologous genes [[4][wain2002guidelines]]. Assigning UniqTag
 identifiers to the current assembly requires no knowledge of the previous
 assemblies.
 
-Methods {-}
+Methods
 ================================================================================
 
 The UniqTag is defined mathematically as follows. Let $\Sigma$ be an alphabet,
@@ -131,7 +131,7 @@ Importantly and in contrast, unlike naming the genes after the genomic contigs
 or scaffolds in which they are found, changing the order of the genes in a
 genome assembly has no effect on the UniqTag *k*-mers of those genes.
 
-Results {-}
+Results
 ================================================================================
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to
@@ -154,7 +154,7 @@ no unique *k*-mer, which is most likely with short sequences. NCBI GRCh37 build
 sequences. Of these 21,783 distinct sequences, there are 54 (0.25%) UniqTag
 collisions.
 
-Conclusions {-}
+Conclusions
 ================================================================================
 
 Whereas the gene and protein identifiers can, with effort, be lifted over from
@@ -167,14 +167,14 @@ UniqTag stability is insensitive to the size of the UniqTag identifier for
 values of *k* between 8 and 50 peptides. The data for these figures are shown
 in supplementary Table&nbsp;S1.
 
-Acknowledgements {-}
+Acknowledgements
 ================================================================================
 
 The authors thank Nathaniel Street for his enthusiastic feedback, the
 SMarTForests project and the organizers of the 2014 Conifer Genome Summit that
 made our conversation possible.
 
-References {-}
+References
 ================================================================================
 
 | [1]&nbsp;[Campbell MS, Law MY, Holt C, Stein JC, Moghe GD, et al. (2014)][campbell2014maker]
@@ -204,7 +204,7 @@ References {-}
 [flicek2013ensembl]: http://dx.doi.org/10.1093/nar/gkt1196
 [wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
 
-Figure Legends {-}
+Figure Legends
 ================================================================================
 
 ![The number of common UniqTag identifiers between older builds of the Ensembl
