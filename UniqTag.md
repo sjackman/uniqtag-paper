@@ -139,7 +139,7 @@ To demonstrate the stability and utility of UniqTag, we assigned identifiers to
 the genes of nine builds of the Ensembl human genome [[5][flicek2013ensembl]]
 (every fifth build from 40 through 70 and build 74, all compared to build 75)
 spanning seven years and two major genome assemblies (NCBI36 up to build 54 and
-GRCh37 afterward). An identifier of nine peptides ($k=9$) was assigned to the
+GRCh37 afterward). An identifier of nine amino acids ($k=9$) was assigned to the
 first protein sequence, that with the smallest Ensembl protein (ENSP) accession
 number, of each gene. The number of common UniqTag identifiers between older
 builds from build 40 on and build 75 is shown in Figure&nbsp;1. Also shown is
@@ -148,11 +148,11 @@ numbers) between builds and the number of genes with peptide sequences that are
 identical between builds. Although less stable than the gene ID, the UniqTag is
 more stable than the protein ID and the peptide sequence.
 
-Sequences with the same amino acid sequence are assigned the same UniqTag
+Sequences with the same peptide sequence are assigned the same UniqTag
 *k*-mer and disambiguated using the numerical suffix. Duplicate UniqTag
 *k*-mers due to hash collisions are rare, but can occur in sequences that have
 no unique *k*-mer, which is most likely with short sequences. NCBI GRCh37 build
-75 has 23,393 annotated genes, which have 21,783 (93.1%) distinct amino acid
+75 has 23,393 annotated genes, which have 21,783 (93.1%) distinct peptide
 sequences. Of these 21,783 distinct sequences, there are 54 (0.25%) UniqTag
 collisions.
 
@@ -166,7 +166,7 @@ operation. The number of identical peptide sequences between builds shows the
 stability that would be expected of using a cryptographic hash value of the
 peptide sequence as the identifier. Supplementary Figure&nbsp;S1 shows that the
 UniqTag stability is insensitive to the size of the UniqTag identifier for
-values of *k* between 8 and 50 peptides. The data for these figures are shown
+values of *k* between 8 and 50 amino acids. The data for these figures are shown
 in supplementary Table&nbsp;S1.
 
 Acknowledgements
