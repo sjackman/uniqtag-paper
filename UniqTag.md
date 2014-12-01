@@ -55,7 +55,9 @@ UniqTag is inspired by MinHash. It selects a single representative *k*-mer from
 a sequence to assign a stable identifier to a gene. These identifiers are
 intended for systematic labelling of genes rather than assigning biological
 gene names, as the latter are typically based on biological function or
-homology to orthologous genes [[4][wain2002guidelines]].
+homology to orthologous genes [[4][wain2002guidelines]]. Assigning UniqTag
+identifiers to the current assembly requires no knowledge of the previous
+assemblies.
 
 Methods {-}
 ================================================================================
@@ -106,7 +108,10 @@ When two gene models have identical *k*-mer compositions, they would be
 assigned the same UniqTag. It is also possible that two genes that have no
 unique *k*-mer and similar *k*-mer composition are assigned the same UniqTag.
 In such cases, genes that have the same UniqTag are distinguished by adding a
-numerical suffix to the UniqTag.
+numerical suffix to the UniqTag. A UniqTag is formatted as a peptide followed
+by a hyphen and a number, such as *ARNDCEQGH-1*. For consistency of formatting
+the suffix is always included, even when the peptide is unique and the numerical
+suffix is *-1*.
 
 The UniqTag is designed to be stable but will change in the following
 conditions: (1)&nbsp;when the sequence at the locus of the UniqTag changes;
@@ -124,7 +129,7 @@ UniqTag spanned the junction.
 
 Importantly and in contrast, unlike naming the genes after the genomic contigs
 or scaffolds in which they are found, changing the order of the genes in a
-genome assembly has no effect on the UniqTag.
+genome assembly has no effect on the UniqTag *k*-mers of those genes.
 
 Results {-}
 ================================================================================
@@ -140,6 +145,14 @@ the number of common gene and protein identifiers (ENSG and ENSP accession
 numbers) between builds and the number of genes with peptide sequences that are
 identical between builds. Although less stable than the gene ID, the UniqTag is
 more stable than the protein ID and the peptide sequence.
+
+Sequences with the same amino acid sequence are assigned the same UniqTag
+*k*-mer and disambiguated using the numerical suffix. Duplicate UniqTag
+*k*-mers due to hash collisions are rare, but can occur in sequences that have
+no unique *k*-mer, which is most likely with short sequences. NCBI GRCh37 build
+75 has 23,393 annotated genes, which have 21,783 (93.1%) distinct amino acid
+sequences. Of these 21,783 distinct sequences, there are 54 (0.25%) UniqTag
+collisions.
 
 Conclusions {-}
 ================================================================================
