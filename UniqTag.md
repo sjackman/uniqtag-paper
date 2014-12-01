@@ -209,6 +209,8 @@ References
 [flicek2013ensembl]: http://dx.doi.org/10.1093/nar/gkt1196
 [wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
 
+\newpage
+
 Figures
 ================================================================================
 
