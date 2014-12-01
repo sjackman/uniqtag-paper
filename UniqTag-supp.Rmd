@@ -8,7 +8,7 @@ output:
 
 # Supplementary material
 
-The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and supplementary Figure S1.
+The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and Figure 2.
 
 ```{r install.packages, eval=FALSE, include=FALSE}
 install.packages('ggplot2')
@@ -78,7 +78,7 @@ ggplot() +
 	ylab('Identifiers in common with Ensembl build 75')
 ```
 
-# Figure S1. Plot the number of common identifiers vs. *k*
+# Figure 2. Plot the number of common identifiers vs. *k*
 The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75 for different values of *k*.
 ```{r k, fig.width=6, fig.height=5, dpi=150}
 ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +

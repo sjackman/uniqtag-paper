@@ -148,6 +148,11 @@ numbers) between builds and the number of genes with peptide sequences that are
 identical between builds. Although less stable than the gene ID, the UniqTag is
 more stable than the protein ID and the peptide sequence.
 
+The stability of the UniqTag is insensitive to the size of the UniqTag
+identifier for values of *k* between 8 and 50 amino acids, shown in
+Figure&nbsp;2. The data for both figures are shown in supplementary
+Table&nbsp;S1.
+
 Sequences with the same peptide sequence are assigned the same UniqTag
 *k*-mer and disambiguated using the numerical suffix. Duplicate UniqTag
 *k*-mers due to hash collisions are rare, but can occur in sequences that have
@@ -164,10 +169,8 @@ older builds to the newest build, the UniqTag identifier can be generated
 without any knowledge of previous assemblies, making it a much simpler
 operation. The number of identical peptide sequences between builds shows the
 stability that would be expected of using a cryptographic hash value of the
-peptide sequence as the identifier. Supplementary Figure&nbsp;S1 shows that the
-UniqTag stability is insensitive to the size of the UniqTag identifier for
-values of *k* between 8 and 50 amino acids. The data for these figures are shown
-in supplementary Table&nbsp;S1.
+peptide sequence as the identifier. The stability of the UniqTag is insensitive
+to the size of the UniqTag *k*-mer for a large range of *k*.
 
 Acknowledgements
 ================================================================================
@@ -213,3 +216,6 @@ Figure Legends
 human genome and build 75, the number of common gene and protein identifiers
 between builds, and the number of genes with peptide sequences that are
 identical between builds.](figure/ensembl.png)
+
+![The number of common UniqTag identifiers between older builds of the Ensembl
+human genome and the current build 75 for different values of *k*.](figure/k.png)
