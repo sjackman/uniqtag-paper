@@ -74,17 +74,17 @@ C_k(s) = C(s) \cap \Sigma^k
 $$
 
 Let *S* be a set of *n* strings $\{s_0, \dots, s_n\}$, such as the peptide or
-nucleotide sequences of the annotated genes of a genome assembly. Let $f(t, S)$
-be the frequency in *S* of a *k*-mer *t*, defined as the number of strings in
-*S* that contain the *k*-mer *t*.
+nucleotide sequences of all the annotated genes of a genome assembly. Let $f(t,
+S)$ be the frequency in *S* of a *k*-mer *t*, defined as the number of strings
+in *S* that contain the *k*-mer *t*.
 
 $$
 f(t, S) = \left\vert \{ s \mid t \in C_k(s) \wedge s \in S \} \right\vert
 $$
 
-Let *T* be the set of *k*-mers of *t*, and $\min T$ be the lexicographically
-minimal *k*-mer of *T*. If the *k*-mers of *T* were sorted alphabetically, it
-would be the first *k*-mer in the list.
+Let the function $\min T$ define the lexicographically minimal string of a set
+of strings *T*. That is, if the strings of the set *T* were sorted
+alphabetically, $\min T$ would refer to the first string in the list.
 
 Finally, $u_k(s, S)$ is the UniqTag, the lexicographically minimal *k*-mer of
 those *k*-mers of *s* that are least frequent in *S*.
@@ -108,9 +108,9 @@ When two gene models have identical *k*-mer compositions, they would be
 assigned the same UniqTag. It is also possible that two genes that have no
 unique *k*-mer and similar *k*-mer composition are assigned the same UniqTag.
 In such cases, genes that have the same UniqTag are distinguished by adding a
-numerical suffix to the UniqTag. A UniqTag is formatted as a peptide followed
+numerical suffix to the UniqTag. A UniqTag is formatted as a *k*-mer followed
 by a hyphen and a number, such as *ARNDCEQGH-1*. For consistency of formatting
-the suffix is always included, even when the peptide is unique and the numerical
+the suffix is always included, even when the *k*-mer is unique and the numerical
 suffix is *-1*.
 
 The UniqTag is designed to be stable but will change in the following
@@ -128,16 +128,18 @@ new UniqTag and the other retains the previous UniqTag, unless the previous
 UniqTag spanned the junction.
 
 Importantly and in contrast, unlike naming the genes after the genomic contigs
-or scaffolds in which they are found, changing the order of the genes in a
-genome assembly has no effect on the UniqTag *k*-mers of those genes.
+or scaffolds in which they are found, changing the names or the order of the
+sequences in a genome assembly has no effect on the UniqTag *k*-mers of those
+genes.
 
 Results
 ================================================================================
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to
 the genes of nine builds of the Ensembl human genome [[5][flicek2013ensembl]]
-spanning seven years and two major genome assemblies, NCBI36 up to build 54 and
-GRCh37 afterward. An identifier of nine peptides ($k=9$) was assigned to the
+(every fifth build from 40 through 70 and build 74, all compared to build 75)
+spanning seven years and two major genome assemblies (NCBI36 up to build 54 and
+GRCh37 afterward). An identifier of nine peptides ($k=9$) was assigned to the
 first protein sequence, that with the smallest Ensembl protein (ENSP) accession
 number, of each gene. The number of common UniqTag identifiers between older
 builds from build 40 on and build 75 is shown in Figure&nbsp;1. Also shown is
