@@ -38,7 +38,7 @@ UniqTag-body.tex: figure/ensembl.png
 
 # Generate GitHub Flavored Markdown from Markdown
 README.md: UniqTag.md
-	pandoc -t markdown_github -o $@ $<
+	pandoc -t markdown_strict -o $@ $<
 
 # Generate HTML from Markdown
 index.html: UniqTag.md
