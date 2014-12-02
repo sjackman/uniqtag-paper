@@ -8,7 +8,7 @@ output:
 
 # Supplementary material
 
-The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and supplementary Figure S1.
+The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and Figure 2.
 
 
 
@@ -76,9 +76,9 @@ ggplot() +
 	ylab('Identifiers in common with Ensembl build 75')
 ```
 
-![plot of chunk ensembl](figure/ensembl.png) 
+![plot of chunk ensembl](figure/ensembl-1.png) 
 
-# Figure S1. Plot the number of common identifiers vs. *k*
+# Figure 2. Plot the number of common identifiers vs. *k*
 The number of common UniqTag identifiers between older builds of the Ensembl human genome and the current build 75 for different values of *k*.
 
 ```r
@@ -94,7 +94,7 @@ ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
 	ylab('Identifiers in common with Ensembl build 75')
 ```
 
-![plot of chunk k](figure/k.png) 
+![plot of chunk k](figure/k-1.png) 
 
 # Listing S1. UniqTag 1.0
 This listing shows the source of [UniqTag 1.0](data/uniqtag), implemented in Ruby.
@@ -208,6 +208,10 @@ Homo_sapiens.NCBI36.%.pep.all.fa.gz:
 # Download Ensembl Human genome GRCh37
 Homo_sapiens.GRCh37.%.pep.all.fa.gz:
 	wget ftp://ftp.ensembl.org/pub/release-$*/fasta/homo_sapiens/pep/Homo_sapiens.GRCh37.$*.pep.all.fa.gz
+
+# Download Ensembl Human genome GRCh38
+Homo_sapiens.GRCh38.%.pep.all.fa.gz:
+	wget -O $@ ftp://ftp.ensembl.org/pub/release-$*/fasta/homo_sapiens/pep/Homo_sapiens.GRCh38.pep.all.fa.gz
 
 # Uncompress FASTA and remove line breaks
 %.fa: %.fa.gz
