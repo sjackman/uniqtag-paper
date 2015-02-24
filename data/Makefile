@@ -115,6 +115,9 @@ Homo_sapiens.GRCh37.70.75.%.comm: Homo_sapiens.GRCh37.70.%.sort Homo_sapiens.GRC
 Homo_sapiens.GRCh37.74.75.%.comm: Homo_sapiens.GRCh37.74.%.sort Homo_sapiens.GRCh37.75.%.sort
 	gcomm $^ >$@
 
+Homo_sapiens.GRCh38.76.75.%.comm: Homo_sapiens.GRCh38.76.%.sort Homo_sapiens.GRCh37.75.%.sort
+	gcomm $^ >$@
+
 # Count the overlap of two sets
 %.venn: %.comm
 	printf "%u\t%u\t%u\n" `grep -c $$'^[^\t]' $<` \
@@ -132,7 +135,8 @@ Homo_sapiens.GRCh37.74.75.%.comm: Homo_sapiens.GRCh37.74.%.sort Homo_sapiens.GRC
 		$* 60 75 \
 		$* 65 75 \
 		$* 70 75 \
-		$* 74 75
+		$* 74 75 \
+		$* 76 75
 
 # Compute the experimental data table
 %-data.tsv: \
@@ -143,7 +147,8 @@ Homo_sapiens.GRCh37.74.75.%.comm: Homo_sapiens.GRCh37.74.%.sort Homo_sapiens.GRC
 		Homo_sapiens.GRCh37.60.75.pep.%.venn \
 		Homo_sapiens.GRCh37.65.75.pep.%.venn \
 		Homo_sapiens.GRCh37.70.75.pep.%.venn \
-		Homo_sapiens.GRCh37.74.75.pep.%.venn
+		Homo_sapiens.GRCh37.74.75.pep.%.venn \
+		Homo_sapiens.GRCh38.76.75.pep.%.venn
 	(printf 'Only.A\tBoth\tOnly.B\n' && cat $^) >$@
 
 # Join the experimental design and data tables
