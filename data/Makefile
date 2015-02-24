@@ -56,7 +56,7 @@ Homo_sapiens.GRCh38.%.pep.all.fa.gz:
 	awk -vORS='' '{print $$1 "\t" $$4; getline; print "\t" $$0 "\n" }' $< |sort -k2,2 -k1 >$@
 
 # Keep the first protein isoform in the FASTA file
-%.uniqgene.fa: %.fa
+%.uniqgene.fa: %.fa.tsv
 	awk 'x[$$2]++ == 0 { print $$1 " " $$2 "\n" $$3 }' $< >$@
 
 # Join all protein isoforms separated by tilde
