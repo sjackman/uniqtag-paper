@@ -14,7 +14,7 @@ representative *k*-mer, a string of length *k*, selected from the sequence of
 that gene. Unlike serial numbers, these identifiers are stable between
 different assemblies and annotations of the same data without requiring that
 previous annotations be lifted over by sequence alignment. We assign UniqTag
-identifiers to nine builds of the Ensembl human genome spanning seven years to
+identifiers to ten builds of the Ensembl human genome spanning eight years to
 demonstrate this stability.
 
 The implementation of UniqTag is available at <https://github.com/sjackman/uniqtag>.
@@ -136,17 +136,18 @@ Results
 ================================================================================
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to
-the genes of nine builds of the Ensembl human genome [[5][flicek2013ensembl]]
-(every fifth build from 40 through 70 and build 74, all compared to build 75)
-spanning seven years and two major genome assemblies (NCBI36 up to build 54 and
-GRCh37 afterward). An identifier of nine amino acids ($k=9$) was assigned to the
-first protein sequence, that with the smallest Ensembl protein (ENSP) accession
-number, of each gene. The number of common UniqTag identifiers between older
-builds from build 40 on and build 75 is shown in Figure&nbsp;1. Also shown is
-the number of common gene and protein identifiers (ENSG and ENSP accession
-numbers) between builds and the number of genes with peptide sequences that are
-identical between builds. Although less stable than the gene ID, the UniqTag is
-more stable than the protein ID and the peptide sequence.
+the genes of ten builds of the Ensembl human genome [[5][cunningham2015ensembl]]
+(every fifth build from 40 through 70, build 74 and build 76, all compared to
+build 75) spanning eight years and three major genome assemblies (NCBI36 up to
+build 54, GRCh37 up to build 75, and GRCh38 for build 76). An identifier of
+nine amino acids ($k=9$) was assigned to the first protein sequence, that with
+the smallest Ensembl protein (ENSP) accession number, of each gene. The number
+of common UniqTag identifiers between build 75 and nine other builds is shown
+in Figure&nbsp;1. Also shown is the number of common gene and protein
+identifiers (ENSG and ENSP accession numbers) between builds and the number of
+genes with peptide sequences that are identical between builds. Although less
+stable than the gene ID, the UniqTag is more stable than the protein ID and the
+peptide sequence.
 
 The stability of the UniqTag is insensitive to the size of the UniqTag
 identifier for values of *k* between 8 and 50 amino acids, shown in
@@ -198,15 +199,15 @@ References
   Guidelines for human gene nomenclature.
   Genomics 79: 464-470.
   doi:10.1006/geno.2002.6748
-| [5]&nbsp;[Flicek P, Amode MR, Barrell D, Beal K, Billis K, et al. (2013)][flicek2013ensembl]
-  Ensembl 2014.
-  Nucleic Acids Research 42: D749-D755.
-  doi:10.1093/nar/gkt1196
+| [5]&nbsp;[Cunningham F, Amode MR, Barrell D, Beal K, Billis K, et al. (2015][cunningham2015ensembl]
+  Ensembl 2015.
+  Nucleic Acids Research 43: D662-D669.
+  doi:10.1093/nar/gku1010
 
 [broder1997resemblance]: http://dx.doi.org/10.1109/SEQUEN.1997.666900
 [campbell2014maker]: http://dx.doi.org/10.1104/pp.113.230144
+[cunningham2015ensembl]: http://dx.doi.org/10.1093/nar/gku1010
 [dang2012shs]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
-[flicek2013ensembl]: http://dx.doi.org/10.1093/nar/gkt1196
 [wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
 
 \newpage
@@ -214,10 +215,10 @@ References
 Figures
 ================================================================================
 
-![The number of common UniqTag identifiers between older builds of the Ensembl
-human genome and build 75, the number of common gene and protein identifiers
-between builds, and the number of genes with peptide sequences that are
-identical between builds.](figure/ensembl.png)
+![The number of common UniqTag identifiers between build 75 of the Ensembl
+human genome and nine other builds, the number of common gene and protein
+identifiers between builds, and the number of genes with peptide sequences that
+are identical between builds.](figure/ensembl.png)
 
-![The number of common UniqTag identifiers between older builds of the Ensembl
-human genome and the current build 75 for different values of *k*.](figure/k.png)
+![The number of common UniqTag identifiers between build 75 of the Ensembl
+human genome and nine other builds for different values of *k*.](figure/k.png)
