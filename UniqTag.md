@@ -113,6 +113,8 @@ by a hyphen and a number, such as *ARNDCEQGH-1*. For consistency of formatting
 the suffix is always included, even when the *k*-mer is unique and the numerical
 suffix is *-1*.
 
+Some genes, such as those found in transposable elements, may occur hundreds of times with little variation. When the repetitive elements are not perfectly identical, the *k*-mers that are unique to each instance of the repetitive element will be chosen preferentially as their UniqTags. Genome sequence assembly may smooth out small variants by collapsing repeats during the initial assembly and then expanding repeats using paired-end reads, after which there may be many identical copies of the repetitive element with no distinguishing unique *k*-mer. Identifying and masking repetitive elements prior to gene annotation will avoid assigning gene identifiers to genes found in repeat elements. Alternatively if assigning gene identifiers to genes found in repeat elements is desirable, a unique *k*-mer could be selected from flanking DNA sequence when the coding sequence is found to be too repetitive. Although this feature is not integrated into our software, this approach can be implemented by assigning UniqTags to both the translated coding sequence and the flanking DNA sequence and selecting the DNA UniqTag when the coding UniqTag is found to be repetitive.
+
 The UniqTag is designed to be stable but will change in the following
 conditions: (1)&nbsp;when the sequence at the locus of the UniqTag changes;
 (2)&nbsp;when a least-frequent *k*-mer that is lexicographically smaller than
