@@ -59,6 +59,8 @@ homology to orthologous genes [[4][wain2002guidelines]]. Assigning UniqTag
 identifiers to the current assembly requires no knowledge of the previous
 assemblies.
 
+Annotation of a draft genome that is in progress requires a system by which to identify genes, even if only temporarily and for internal use. Assigning permanent identifiers to a stable genome assembly for public release, such as with complete genome assemblies of model organisms, is a different situation and typically involves a public database of permanently accessioned identifiers, lifting over gene identifiers from one assembly to an updated assembly using sequence alignment, rules of versioning those symbols, and often manual curation. UniqTag provides a simple system for quickly assigning stable identifiers with little more effort than assigning serial numbers, but yet are stable, unlike serial numbers. Our approach does not require sequence alignment nor in fact any knowledge of previous assemblies to assign identifiers to new assemblies.
+
 Methods
 ================================================================================
 
