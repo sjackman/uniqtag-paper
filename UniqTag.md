@@ -124,6 +124,8 @@ the previous UniqTag is created; (3)&nbsp;when a duplicate *k*-mer is created
 elsewhere that results in the previous UniqTag no longer being a least-frequent
 *k*-mer.
 
+UniqTag identifiers are stable to small changes to the gene sequence, such as the correction of small misassemblies, but large changes to the gene sequence or gene model, such as the addition or removal of entire exons, will often result in a change of the UniqTag identifier of that gene. The larger the change of the sequence or gene model, the more likely it is that the UniqTag will change.
+
 The special cases of merging and splitting gene models are interesting.
 Concatenating two gene models results in a gene whose UniqTag is the minimum of
 the two previous UniqTags, unless the new UniqTag spans the junction of the two
