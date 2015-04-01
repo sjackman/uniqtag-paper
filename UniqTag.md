@@ -143,10 +143,17 @@ Results
 
 To demonstrate the stability and utility of UniqTag, we assigned identifiers to the genes of ten builds of the Ensembl human genome [[5][cunningham2015ensembl]] (every fifth build from 40 through 70, and builds 74, 75 and 76) spanning eight years and three major genome assemblies (NCBI36 up to build 54, GRCh37 up to build 75, and GRCh38 for build 76). Ensembl build 75, the final build to use GRCh37, is used as the reference to which all other builds are compared. The number of common UniqTag identifiers between build 75 and nine other builds is shown in Figure&nbsp;1. A UniqTag identifier of nine amino acids ($k=9$) was assigned to the first protein sequence, that with the smallest Ensembl protein (ENSP) accession number, of each gene. Also shown is the number of common gene and protein identifiers (ENSG and ENSP accession numbers) between builds and the number of genes with peptide sequences that are identical between builds. Although less stable than the gene ID, the UniqTag is more stable than the protein ID and the peptide sequence. The last build of GRCh37, build 75, and the first build of GRCh38, build 76, for example have 20,376 (90.7%) UniqTag in common and 21,097 (93.9%) ENSG accession numbers in common of the 22,469 genes of build 76.
 
+![The number of common UniqTag identifiers between build 75 of the Ensembl
+human genome and nine other builds, the number of common gene and protein
+identifiers between builds, and the number of genes with peptide sequences that
+are identical between builds.](figure/ensembl.png)
+
 The stability of the UniqTag is insensitive to the size of the UniqTag
 identifier for values of *k* between 8 and 50 amino acids, shown in
-Figure&nbsp;2. The data for both figures are shown in supplementary
-Table&nbsp;S1.
+Figure&nbsp;2. The data for both figures are shown in Table&nbsp;S1.
+
+![The number of common UniqTag identifiers between build 75 of the Ensembl
+human genome and nine other builds for different values of *k*.](figure/k.png)
 
 As described above, genes with the same peptide sequence result in hash collisions and are disambiguated using a numerical suffix. Duplicate UniqTag *k*-mers due to hash collisions are rare, but can occur in sequences that have no unique *k*-mer, which is most likely with short sequences. NCBI GRCh37 build 75 has 23,393 annotated genes, which have 21,783 (93.1%) distinct peptide sequences. Of these 21,783 distinct sequences, there are 54 (0.25%) UniqTag collisions.
 
@@ -197,16 +204,3 @@ References
 [cunningham2015ensembl]: http://dx.doi.org/10.1093/nar/gku1010
 [dang2012shs]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
 [wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
-
-\newpage
-
-Figures
-================================================================================
-
-![The number of common UniqTag identifiers between build 75 of the Ensembl
-human genome and nine other builds, the number of common gene and protein
-identifiers between builds, and the number of genes with peptide sequences that
-are identical between builds.](figure/ensembl.png)
-
-![The number of common UniqTag identifiers between build 75 of the Ensembl
-human genome and nine other builds for different values of *k*.](figure/k.png)
