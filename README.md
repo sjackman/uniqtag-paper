@@ -9,8 +9,8 @@ each gene that is a representative *k*-mer, a string of length *k*,
 selected from the sequence of that gene. Unlike serial numbers, these
 identifiers are stable between different assemblies and annotations of
 the same data without requiring that previous annotations be lifted over
-by sequence alignment. We assign UniqTag identifiers to nine builds of
-the Ensembl human genome spanning seven years to demonstrate this
+by sequence alignment. We assign UniqTag identifiers to ten builds of
+the Ensembl human genome spanning eight years to demonstrate this
 stability.
 
 The implementation of UniqTag is available at
@@ -61,6 +61,19 @@ biological function or homology to orthologous genes
 [[4](http://dx.doi.org/10.1006/geno.2002.6748)]. Assigning UniqTag
 identifiers to the current assembly requires no knowledge of the
 previous assemblies.
+
+Annotation of a draft genome that is in progress requires a system by
+which to identify genes, even if only temporarily and for internal use.
+Assigning permanent identifiers to a stable genome assembly for public
+release, such as with complete genome assemblies of model organisms, is
+a different situation and typically involves a public database of
+permanently accessioned identifiers, lifting over gene identifiers from
+one assembly to an updated assembly using sequence alignment, rules of
+versioning those symbols, and often manual curation. UniqTag on the
+other hand provides a simple system for quickly assigning stable
+identifiers with little more effort than assigning serial numbers. Our
+approach does not require sequence alignment nor in fact any knowledge
+of previous assemblies to assign identifiers to new assemblies.
 
 Methods
 =======
@@ -118,12 +131,37 @@ formatted as a *k*-mer followed by a hyphen and a number, such as
 included, even when the *k*-mer is unique and the numerical suffix is
 *-1*.
 
+Some genes, such as those found in transposable elements, may occur
+hundreds of times with little variation. When the repetitive elements
+are not perfectly identical, the *k*-mers that are unique to each
+instance of the repetitive element will be chosen preferentially as
+their UniqTags. Genome sequence assembly may smooth out small variants
+by collapsing repeats during the initial assembly and then expanding
+repeats using paired-end reads, after which there may be many identical
+copies of the repetitive element with no distinguishing unique *k*-mer.
+Identifying and masking repetitive elements prior to gene annotation
+will avoid assigning gene identifiers to genes found in repeat elements.
+Alternatively if assigning gene identifiers to genes found in repeat
+elements is desirable, a unique *k*-mer could be selected from flanking
+DNA sequence when the coding sequence is found to be too repetitive.
+Although this feature is not integrated into our software, this approach
+can be implemented by assigning UniqTags to both the translated coding
+sequence and the flanking DNA sequence and selecting the DNA UniqTag
+when the coding UniqTag is found to be repetitive.
+
 The UniqTag is designed to be stable but will change in the following
 conditions: (1) when the sequence at the locus of the UniqTag changes;
 (2) when a least-frequent *k*-mer that is lexicographically smaller than
 the previous UniqTag is created; (3) when a duplicate *k*-mer is created
 elsewhere that results in the previous UniqTag no longer being a
 least-frequent *k*-mer.
+
+UniqTag identifiers are stable to small changes to the gene sequence,
+such as the correction of small misassemblies, but large changes to the
+gene sequence or gene model, such as the addition or removal of entire
+exons, will often result in a change of the UniqTag identifier of that
+gene. The larger the change of the sequence or gene model, the more
+likely it is that the UniqTag will change.
 
 The special cases of merging and splitting gene models are interesting.
 Concatenating two gene models results in a gene whose UniqTag is the
@@ -141,31 +179,46 @@ Results
 =======
 
 To demonstrate the stability and utility of UniqTag, we assigned
-identifiers to the genes of nine builds of the Ensembl human genome
-[[5](http://dx.doi.org/10.1093/nar/gkt1196)] (every fifth build from 40
-through 70 and build 74, all compared to build 75) spanning seven years
-and two major genome assemblies (NCBI36 up to build 54 and GRCh37
-afterward). An identifier of nine amino acids (*k* = 9) was assigned to
-the first protein sequence, that with the smallest Ensembl protein
-(ENSP) accession number, of each gene. The number of common UniqTag
-identifiers between older builds from build 40 on and build 75 is shown
-in Figure 1. Also shown is the number of common gene and protein
-identifiers (ENSG and ENSP accession numbers) between builds and the
-number of genes with peptide sequences that are identical between
-builds. Although less stable than the gene ID, the UniqTag is more
-stable than the protein ID and the peptide sequence.
+identifiers to the genes of ten builds of the Ensembl human genome
+[[5](http://dx.doi.org/10.1093/nar/gku1010)] (every fifth build from 40
+through 70, and builds 74, 75 and 76) spanning eight years and three
+major genome assemblies (NCBI36 up to build 54, GRCh37 up to build 75,
+and GRCh38 for build 76). Ensembl build 75, the final build to use
+GRCh37, is used as the reference to which all other builds are compared.
+The number of common UniqTag identifiers between build 75 and nine other
+builds is shown in Figure 1. A UniqTag identifier of nine amino acids
+(*k* = 9) was assigned to the first protein sequence, that with the
+smallest Ensembl protein (ENSP) accession number, of each gene. Also
+shown is the number of common gene and protein identifiers (ENSG and
+ENSP accession numbers) between builds and the number of genes with
+peptide sequences that are identical between builds. Although less
+stable than the gene ID, the UniqTag is more stable than the protein ID
+and the peptide sequence. The last build of GRCh37, build 75, and the
+first build of GRCh38, build 76, for example have 20,376 (90.7%) UniqTag
+in common and 21,097 (93.9%) ENSG accession numbers in common of the
+22,469 genes of build 76.
+
+![The number of common UniqTag identifiers between build 75 of the
+Ensembl human genome and nine other builds, the number of common gene
+and protein identifiers between builds, and the number of genes with
+peptide sequences that are identical between
+builds.](figure/ensembl.png)
 
 The stability of the UniqTag is insensitive to the size of the UniqTag
 identifier for values of *k* between 8 and 50 amino acids, shown in
-Figure 2. The data for both figures are shown in supplementary Table S1.
+Figure 2. The data for both figures are shown in Table S1.
 
-Sequences with the same peptide sequence are assigned the same UniqTag
-*k*-mer and disambiguated using the numerical suffix. Duplicate UniqTag
-*k*-mers due to hash collisions are rare, but can occur in sequences
-that have no unique *k*-mer, which is most likely with short sequences.
-NCBI GRCh37 build 75 has 23,393 annotated genes, which have 21,783
-(93.1%) distinct peptide sequences. Of these 21,783 distinct sequences,
-there are 54 (0.25%) UniqTag collisions.
+![The number of common UniqTag identifiers between build 75 of the
+Ensembl human genome and nine other builds for different values of
+*k*.](figure/k.png)
+
+As described above, genes with the same peptide sequence result in hash
+collisions and are disambiguated using a numerical suffix. Duplicate
+UniqTag *k*-mers due to hash collisions are rare, but can occur in
+sequences that have no unique *k*-mer, which is most likely with short
+sequences. NCBI GRCh37 build 75 has 23,393 annotated genes, which have
+21,783 (93.1%) distinct peptide sequences. Of these 21,783 distinct
+sequences, there are 54 (0.25%) UniqTag collisions.
 
 Conclusions
 ===========
@@ -202,19 +255,21 @@ of Sequences 1997 Proceedings: 21-29. doi:10.1109/SEQUEN.1997.666900
 [4] [Wain HM, Bruford EA, Lovering RC, Lush MJ, Wright MW, Povey S
 (2002)](http://dx.doi.org/10.1006/geno.2002.6748) Guidelines for human
 gene nomenclature. Genomics 79: 464-470. doi:10.1006/geno.2002.6748  
-[5] [Flicek P, Amode MR, Barrell D, Beal K, Billis K, et al.
-(2013)](http://dx.doi.org/10.1093/nar/gkt1196) Ensembl 2014. Nucleic
-Acids Research 42: D749-D755. doi:10.1093/nar/gkt1196
+[5] [Cunningham F, Amode MR, Barrell D, Beal K, Billis K, et al.
+(2015](http://dx.doi.org/10.1093/nar/gku1010) Ensembl 2015. Nucleic
+Acids Research 43: D662-D669. doi:10.1093/nar/gku1010
 
-Figures
-=======
+Supporting Information Legends
+==============================
 
-![The number of common UniqTag identifiers between older builds of the
-Ensembl human genome and build 75, the number of common gene and protein
-identifiers between builds, and the number of genes with peptide
-sequences that are identical between builds.](figure/ensembl.png)
+Table S1. The number of common identifiers.  
+These data are used to plot the above figures. They are also available
+in tab-separated values (TSV) format.
 
-![The number of common UniqTag identifiers between older builds of the
-Ensembl human genome and the current build 75 for different values of
-*k*.](figure/k.png)
+Listing S1. UniqTag 1.0.  
+This listing shows the source of UniqTag 1.0, implemented in Ruby.
+
+Listing S2. Calculate the number of common identifiers.  
+This Makefile script calculates the data used to plot the above figures.
+
 
