@@ -204,3 +204,15 @@ References
 [cunningham2015ensembl]: http://dx.doi.org/10.1093/nar/gku1010
 [dang2012shs]: http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977
 [wain2002guidelines]: http://dx.doi.org/10.1006/geno.2002.6748
+
+Supporting Information Legends
+================================================================================
+
+Table S1. The number of common identifiers.
+  : These data are used to plot the above figures. They are also available in tab-separated values (TSV) format.
+
+Listing S1. UniqTag 1.0.
+  : This listing shows the source of UniqTag 1.0, implemented in Ruby.
+
+Listing S2. Calculate the number of common identifiers.
+  : This Makefile script calculates the data used to plot the above figures.
