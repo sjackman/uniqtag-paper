@@ -78,3 +78,7 @@ UniqTag-supp.tsv: data/UniqTag.tsv
 # Generate PDF from RMarkdown
 %.pdf: %.Rmd %.tsv
 	Rscript -e 'rmarkdown::render("$<", "pdf_document", "$@")'
+
+# Convert a PNG to TIFF and remove the alpha channel
+%.tiff: %.png
+	convert $< -alpha remove -alpha off $@
