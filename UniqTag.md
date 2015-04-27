@@ -178,7 +178,7 @@ made our conversation possible.
 References
 ================================================================================
 
-| [1]&nbsp;[Campbell MS, Law MY, Holt C, Stein JC, Moghe GD, et al. (2014)][campbell2014maker]
+| [1]&nbsp;[Campbell MS, Law MY, Holt C, Stein JC, Moghe GD, Hufnagel DE, et al. (2014)][campbell2014maker]
   MAKER-P: a tool-kit for the rapid creation, management, and quality control of
   plant genome annotations.
   Plant Physiology 164: 513-524.
@@ -194,7 +194,7 @@ References
   Guidelines for human gene nomenclature.
   Genomics 79: 464-470.
   doi:10.1006/geno.2002.6748
-| [5]&nbsp;[Cunningham F, Amode MR, Barrell D, Beal K, Billis K, et al. (2015][cunningham2015ensembl]
+| [5]&nbsp;[Cunningham F, Amode MR, Barrell D, Beal K, Billis K, Brent S, et al. (2015)][cunningham2015ensembl]
   Ensembl 2015.
   Nucleic Acids Research 43: D662-D669.
   doi:10.1093/nar/gku1010
