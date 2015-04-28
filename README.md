@@ -186,7 +186,7 @@ major genome assemblies (NCBI36 up to build 54, GRCh37 up to build 75,
 and GRCh38 for build 76). Ensembl build 75, the final build to use
 GRCh37, is used as the reference to which all other builds are compared.
 The number of common UniqTag identifiers between build 75 and nine other
-builds is shown in Figure 1. A UniqTag identifier of nine amino acids
+builds is shown in Fig. 1. A UniqTag identifier of nine amino acids
 (*k* = 9) was assigned to the first protein sequence, that with the
 smallest Ensembl protein (ENSP) accession number, of each gene. Also
 shown is the number of common gene and protein identifiers (ENSG and
@@ -206,7 +206,7 @@ builds.](figure/ensembl.png)
 
 The stability of the UniqTag is insensitive to the size of the UniqTag
 identifier for values of *k* between 8 and 50 amino acids, shown in
-Figure 2. The data for both figures are shown in Table S1.
+Fig. 2. The data for both figures are shown in Table A in S1 File.
 
 ![The number of common UniqTag identifiers between build 75 of the
 Ensembl human genome and nine other builds for different values of
@@ -242,9 +242,9 @@ Summit that made our conversation possible.
 References
 ==========
 
-[1] [Campbell MS, Law MY, Holt C, Stein JC, Moghe GD, et al.
-(2014)](http://dx.doi.org/10.1104/pp.113.230144) MAKER-P: a tool-kit for
-the rapid creation, management, and quality control of plant genome
+[1] [Campbell MS, Law MY, Holt C, Stein JC, Moghe GD, Hufnagel DE, et
+al. (2014)](http://dx.doi.org/10.1104/pp.113.230144) MAKER-P: a tool-kit
+for the rapid creation, management, and quality control of plant genome
 annotations. Plant Physiology 164: 513-524. doi:10.1104/pp.113.230144  
 [2] [Dang QH
 (2012)](http://www.nist.gov/manuscript-publication-search.cfm?pub_id=910977)
@@ -255,21 +255,17 @@ of Sequences 1997 Proceedings: 21-29. doi:10.1109/SEQUEN.1997.666900
 [4] [Wain HM, Bruford EA, Lovering RC, Lush MJ, Wright MW, Povey S
 (2002)](http://dx.doi.org/10.1006/geno.2002.6748) Guidelines for human
 gene nomenclature. Genomics 79: 464-470. doi:10.1006/geno.2002.6748  
-[5] [Cunningham F, Amode MR, Barrell D, Beal K, Billis K, et al.
-(2015](http://dx.doi.org/10.1093/nar/gku1010) Ensembl 2015. Nucleic
+[5] [Cunningham F, Amode MR, Barrell D, Beal K, Billis K, Brent S, et
+al. (2015)](http://dx.doi.org/10.1093/nar/gku1010) Ensembl 2015. Nucleic
 Acids Research 43: D662-D669. doi:10.1093/nar/gku1010
 
 Supporting Information Legends
 ==============================
 
-Table S1. The number of common identifiers.  
-These data are used to plot the above figures. They are also available
-in tab-separated values (TSV) format.
-
-Listing S1. UniqTag 1.0.  
-This listing shows the source of UniqTag 1.0, implemented in Ruby.
-
-Listing S2. Calculate the number of common identifiers.  
-This Makefile script calculates the data used to plot the above figures.
+S1 File.  
+The data used to plot Figs. 1 and 2, also available in tab-separated
+values (TSV) format (**Table A**). The source of UniqTag 1.0,
+implemented in Ruby (**Listing A**). The Makefile script that calculates
+the data used to plot Figs. 1 and 2 (**Listing B**).
 
 

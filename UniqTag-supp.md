@@ -1,6 +1,6 @@
 ---
 title: 'Supplementary material for UniqTag: Content-derived unique and stable identifiers for gene annotation'
-author: 'Shaun Jackman'
+author: 'Shaun D. Jackman'
 output:
   html_document:
     highlight: pygments
@@ -8,7 +8,7 @@ output:
 
 # Supplementary material
 
-The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and Figure 2.
+The following supplementary material of the UniqTag paper present the code, shown in Listings A and B, and the data, shown in supplementary Table A, used to generate Figures 1 and 2 of the main manuscript.
 
 
 
@@ -96,7 +96,7 @@ ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
 
 ![plot of chunk k](figure/k-1.png) 
 
-# Listing S1. UniqTag 1.0
+# Listing A. UniqTag 1.0
 This listing shows the source of [UniqTag 1.0](data/uniqtag), implemented in Ruby.
 ```ruby
 #!/usr/bin/env ruby
@@ -165,7 +165,7 @@ kmer_counts = count_kmer seqs, k
 puts seqs.map { |seq| get_tag(seq, kmer_counts, k) }.dedup
 ```
 
-# Listing S2. Calculate the number of common identifiers
+# Listing B. Calculate the number of common identifiers
 This [Makefile](data/Makefile) script calculates the data used to plot the above figures.
 ```makefile
 # The supplementary material for the UniqTag paper
@@ -347,7 +347,7 @@ UniqTag.tsv: \
 	(head -n1 $< && tail -qn+2 $^) >$@
 ```
 
-# Table S1. The number of common identifiers
+# Table A. The number of common identifiers
 These data are used to plot the above figures. They are also available in [tab-separated values (TSV) format](UniqTag-supp.tsv).
 
 ```r
