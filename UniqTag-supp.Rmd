@@ -1,6 +1,6 @@
 ---
 title: 'Supplementary material for UniqTag: Content-derived unique and stable identifiers for gene annotation'
-author: 'Shaun Jackman'
+author: 'Shaun D. Jackman'
 output:
   html_document:
     highlight: pygments
