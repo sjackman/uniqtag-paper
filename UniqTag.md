@@ -150,7 +150,7 @@ are identical between builds.](figure/ensembl.png)
 
 The stability of the UniqTag is insensitive to the size of the UniqTag
 identifier for values of *k* between 8 and 50 amino acids, shown in
-Fig.&nbsp;2. The data for both figures are shown in Table&nbsp;S1.
+Fig.&nbsp;2. The data for both figures are shown in Table&nbsp;A in S1&nbsp;File.
 
 ![The number of common UniqTag identifiers between build 75 of the Ensembl
 human genome and nine other builds for different values of *k*.](figure/k.png)
@@ -208,11 +208,7 @@ References
 Supporting Information Legends
 ================================================================================
 
-Table S1. The number of common identifiers.
-  : These data are used to plot the above figures. They are also available in tab-separated values (TSV) format.
-
-Listing S1. UniqTag 1.0.
-  : This listing shows the source of UniqTag 1.0, implemented in Ruby.
-
-Listing S2. Calculate the number of common identifiers.
-  : This Makefile script calculates the data used to plot the above figures.
+S1 File.
+  : The data used to plot Figs. 1 and 2, also available in tab-separated values (TSV) format (**Table&nbsp;A**).
+    The source of UniqTag 1.0, implemented in Ruby (**Listing&nbsp;A**).
+    The Makefile script that calculates the data used to plot Figs. 1 and 2 (**Listing&nbsp;B**).

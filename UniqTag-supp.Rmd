@@ -8,7 +8,7 @@ output:
 
 # Supplementary material
 
-The following supplementary material of the UniqTag paper present the code, shown in Listing S1 and S2, and the data, shown in supplementary Table S1, used to generate Figure 1 and Figure 2.
+The following supplementary material of the UniqTag paper present the code, shown in Listings A and B, and the data, shown in supplementary Table A, used to generate Figures 1 and 2 of the main manuscript.
 
 ```{r install.packages, eval=FALSE, include=FALSE}
 install.packages('ggplot2')
@@ -93,19 +93,19 @@ ggplot(na.omit(data), aes(x = k, y = Both, group = A, colour = A)) +
 	ylab('Identifiers in common with Ensembl build 75')
 ```
 
-# Listing S1. UniqTag 1.0
+# Listing A. UniqTag 1.0
 This listing shows the source of [UniqTag 1.0](data/uniqtag), implemented in Ruby.
 ```ruby
 `r paste(readLines('data/uniqtag'), collapse = '\n')`
 ```
 
-# Listing S2. Calculate the number of common identifiers
+# Listing B. Calculate the number of common identifiers
 This [Makefile](data/Makefile) script calculates the data used to plot the above figures.
 ```makefile
 `r paste(readLines('data/Makefile'), collapse = '\n')`
 ```
 
-# Table S1. The number of common identifiers
+# Table A. The number of common identifiers
 These data are used to plot the above figures. They are also available in [tab-separated values (TSV) format](UniqTag-supp.tsv).
 ```{r data-table, results='asis'}
 kable(data)
