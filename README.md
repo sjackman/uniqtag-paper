@@ -13,9 +13,10 @@ by sequence alignment. We assign UniqTag identifiers to ten builds of
 the Ensembl human genome spanning eight years to demonstrate this
 stability.
 
-The implementation of UniqTag is available at
-<https://github.com/sjackman/uniqtag>. Supplementary material and code
-to reproduce it is available at
+The implementation of UniqTag in Ruby and an R package are available at
+<https://github.com/sjackman/uniqtag>. The R package is also available
+from CRAN: `install.packages("uniqtag")`. Supplementary material and
+code to reproduce it is available at
 <https://github.com/sjackman/uniqtag-paper>.
 
 Introduction
